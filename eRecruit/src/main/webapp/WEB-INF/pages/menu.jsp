@@ -20,11 +20,11 @@
             <li >
                 <a >Link</a>
             </li>
-            <li >
-                <a >Disabled</a>
+            <li class="nav-item ${activePage eq "Users" ? ' active' : ''}">
+            <a class="nav-link" href="${pageContext.request.contextPath}/Users">Users</a>
             </li>
             <li >
-                <a >Dropdown</a>
+                <a>Dropdown</a>
                 <div >
                     <a >Action</a>
                     <a >Another action</a>
