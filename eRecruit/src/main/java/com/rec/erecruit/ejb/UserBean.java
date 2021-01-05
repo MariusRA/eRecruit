@@ -28,6 +28,56 @@ public class UserBean {
     @PersistenceContext
     private EntityManager em;
     
+    public boolean checkDuplicatesDB(String Username){
+        boolean flag= false;
+        
+        List<UserDetails> users= getAllUsers();
+        
+        for (UserDetails user : users){
+            if (user.getUsername().equals(Username)){
+                flag=true;
+            }
+        }
+        return flag;
+    }
+    
+    public void createUser(String FirstName,String LastName, String PhoneNo, String MobileNo, String Mail, String JobTitle, String Description, String PasswordSha256){
+        User user= new User();
+        
+        int lungime=1;
+        String UsernameGenerat;
+        
+        if(LastName.length()>5){
+            UsernameGenerat= LastName.substring(0, 5) + FirstName.substring(0,lungime);
+        } else{
+            UsernameGenerat= LastName + FirstName.substring(0,lungime);
+        }
+        
+        while(checkDuplicatesDB(UsernameGenerat)){
+            lungime++;
+            
+            if(LastName.length()>5){
+                UsernameGenerat= LastName.substring(0, 5) + FirstName.substring(0,lungime);
+            } else{
+                UsernameGenerat= LastName + FirstName.substring(0,lungime);
+            }
+        }
+        
+        
+        user.setNume(LastName);
+        user.setPrenume(FirstName);
+        user.setNrTel(PhoneNo);
+        user.setNrMobil(MobileNo);
+        user.setMail(Mail);
+        user.setFunctie(JobTitle);
+        user.setDescriere(Description);
+        user.setPassword(PasswordSha256);
+        user.setUsername(UsernameGenerat);
+        
+        
+        em.persist(user);
+    }
+    
     public List<UserDetails> getAllUsers(){
         LOG.info("getAllUsers");
         try{
