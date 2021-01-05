@@ -1,3 +1,4 @@
+
 <%-- 
     Document   : addUser
     Created on : Jan 4, 2021, 9:40:51 PM
@@ -13,15 +14,44 @@
     <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/AddUser">
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="" value="" required>
+                <label for="first">First Name</label>
+                <input type="text" class="form-control" id="first" name="first" placeholder="" value="" required>
                 <div class="invalid-feedback">
-                    Username is required.
+                    First Name is required.
                 </div>
             </div>
         </div>
        
-
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="last">Last Name</label>
+                <input type="text" class="form-control" id="last" name="last" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                    Last Name is required.
+                </div>
+            </div>
+        </div>
+       
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="phone">Phone Number</label>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                    Phone Number is required.
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="mobile">Mobile Number</label>
+                <input type="text" class="form-control" id="mobile" name="mobile" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                    Mobile Number is required.
+                </div>
+            </div>
+        </div>
+        
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="email">Email</label>
@@ -34,7 +64,27 @@
         
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="password">Password</label>
+                <label for="job">Job Title</label>
+                <input type="text" class="form-control" id="job" name="job" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                    Job Title is required.
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="description">Description</label>
+                <input type="text" class="form-control" id="description" name="description" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                    Description is required.
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="description">Password</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="" value="" required>
                 <div class="invalid-feedback">
                     Password is required.
@@ -44,12 +94,18 @@
 
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="position">Position</label>
-                <select class="custom-select d-block w-100" id="position" name="position" required>
-                    <option value="">Choose...</option>
-                    <option value="ADMINISTRATOR">Administrator</option>
-                    <option value="CLIENT">Client</option>
-                </select>
+                <label for="GENDIR">General Director</label>
+                <input type="checkbox" id="GENDIR" name="roluri" value="GENDIR">
+                <label for="DEPDIR">Department Director</label>
+                <input type="checkbox" id="GENDIR" name="roluri" value="DEPDIR">
+                <label for="HRDIR">HR Director</label>
+                <input type="checkbox" id="HRDIR" name="roluri" value="HRDIR">
+                <label for="ADMIN">Administrator</label>
+                <input type="checkbox" id="ADMIN" name="roluri" value="ADMIN">
+                <label for="RECRUIT">Recruiter</label>
+                <input type="checkbox" id="RECRUIT" name="roluri" value="RECRUIT">
+                <label for="VIEWER">Viewer</label>
+                <input type="checkbox" id="VIEWER" name="roluri" value="VIEWER">
                 <div class="invalid-feedback">
                     Please select a position.
                 </div>
@@ -58,7 +114,7 @@
     
     <button class="btn btn-primary btn-lg btn-block" type="submit">Save</button>
 
-<script>
+    <script>
       // Example starter JavaScript for disabling form submissions if there are invalid fields
       (function() {
         'use strict';
