@@ -11,10 +11,10 @@
 <t:pageTemplate pageTitle="Users">
     <h1>Users</h1>
     <form method="POST" action="${pageContext.request.contextPath}/Users">
-        
+
         <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddUser" role="button">Add User</a>
-        
-        
+
+
         <c:forEach var="user" items="${users}" varStatus="Status">
             <div class="row">
                 <div class="col-md">
@@ -32,6 +32,6 @@
             </div>
         </c:forEach>
     </form>
-   
 
-    </t:pageTemplate>
+
+</t:pageTemplate>
