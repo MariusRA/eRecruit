@@ -9,28 +9,36 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <t:pageTemplate pageTitle="Users">
-    <h1>Users</h1>
     <form method="POST" action="${pageContext.request.contextPath}/Users">
-
+        <div class="d-flex justify-content-center">
         <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddUser" role="button">Add User</a>
-
-
+        </div>  
+        <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Username</th>
+                 <th scope="col">Email</th>
+                <th scope="col">Nr.Telefon</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
         <c:forEach var="user" items="${users}" varStatus="Status">
-            <div class="row">
-                <div class="col-md">
-                    ${user.id}
-                </div>
-                <div class="col-md-4">
-                    ${user.username}
-                </div>
-                <div class="col-md-4">
-                    ${user.mail}
-                </div>
-                <div class="col-md-3">
-                    ${user.nrTel}
-                </div>
-            </div>
+          <tr>
+              <td>${user.id}</td>
+              <td>${user.username}</td>
+              <td>${user.mail}</td>     
+              <td>${user.nrTel}</td>
+              <td>
+                  <a class="btn btn-primary" href="${pageContext.request.contextPath}/EditUser?id=${user.id}" role="button">Edit</a>
+                 <button class="btn btn-primary" name="user_ids" value="${user.id}" type="submit">Delete</button>
+              </td>
+          </tr>
         </c:forEach>
+          </tbody>
+        </table>
     </form>
 
 
