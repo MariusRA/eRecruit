@@ -3,5 +3,5 @@
 
 
 <t:pageTemplate pageTitle="eRecruit">
-    <h1>Welcome</h1>
+
 </t:pageTemplate>

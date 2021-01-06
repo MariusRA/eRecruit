@@ -55,7 +55,7 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="" value="" required>
+                <input type="email" class="form-control needs-validation" id="email" name="email" placeholder="" value="" required>
                 <div class="invalid-feedback">
                     Email is required.
                 </div>
