@@ -114,7 +114,7 @@ public class UserBean {
     
      public UserDetails findById(Integer userId){
         User user = em.find(User.class,userId);
-        return new UserDetails(user.getId(),user.getNume(),user.getPrenume(),user.getNrTel(),user.getNrMobil(),user.getMail(),user.getFunctie(),user.getDescriere(),user.getUsername(),user.getPassword());
+        return new UserDetails(user.getId(),user.getNume(),user.getPrenume(),user.getNrTel(),user.getNrMobil(),user.getMail(),user.getFunctie(),user.getDescriere(),user.getUsername(),user.getPassword(), user.getRoles());
     }
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
