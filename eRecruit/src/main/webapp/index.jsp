@@ -3,5 +3,7 @@
 
 
 <t:pageTemplate pageTitle="eRecruit">
+    <t:hpPageTemplate pageTitle="eRecruit">
 
+    </t:hpPageTemplate>
 </t:pageTemplate>
