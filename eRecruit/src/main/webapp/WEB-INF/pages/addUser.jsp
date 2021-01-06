@@ -91,21 +91,30 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="description">Role</label>
+                <input type="roles" class="form-control" id="roles" name="password" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                    Role is required.
+                </div>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="GENDIR">General Director</label>
-                <input type="checkbox" id="GENDIR" name="roluri" value="GENDIR">
+                <input type="checkbox" id="GENDIR" name="roles" value="GENDIR">
                 <label for="DEPDIR">Department Director</label>
-                <input type="checkbox" id="GENDIR" name="roluri" value="DEPDIR">
+                <input type="checkbox" id="GENDIR" name="roles" value="DEPDIR">
                 <label for="HRDIR">HR Director</label>
-                <input type="checkbox" id="HRDIR" name="roluri" value="HRDIR">
+                <input type="checkbox" id="HRDIR" name="roles" value="HRDIR">
                 <label for="ADMIN">Administrator</label>
-                <input type="checkbox" id="ADMIN" name="roluri" value="ADMIN">
+                <input type="checkbox" id="ADMIN" name="roles" value="ADMIN">
                 <label for="RECRUIT">Recruiter</label>
-                <input type="checkbox" id="RECRUIT" name="roluri" value="RECRUIT">
+                <input type="checkbox" id="RECRUIT" name="roles" value="RECRUIT">
                 <label for="VIEWER">Viewer</label>
-                <input type="checkbox" id="VIEWER" name="roluri" value="VIEWER">
+                <input type="checkbox" id="VIEWER" name="roles" value="VIEWER">
                 <div class="invalid-feedback">
                     Please select a position.
                 </div>

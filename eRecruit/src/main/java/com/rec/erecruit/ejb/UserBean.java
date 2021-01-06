@@ -43,7 +43,7 @@ public class UserBean {
         return flag;
     }
     
-    public void createUser(String FirstName,String LastName, String PhoneNo, String MobileNo, String Mail, String JobTitle, String Description, String PasswordSha256){
+    public void createUser(String FirstName,String LastName, String PhoneNo, String MobileNo, String Mail, String JobTitle, String Description, String PasswordSha256, String Roles){
         User user= new User();
         
         int lungime=1;
@@ -75,6 +75,7 @@ public class UserBean {
         user.setDescriere(Description);
         user.setPassword(PasswordSha256);
         user.setUsername(UsernameGenerat);
+        user.setRoles(Roles);
         
         
         em.persist(user);
@@ -95,7 +96,7 @@ public class UserBean {
     private List<UserDetails> copyUsersToDetails(List<User> users){
         List<UserDetails> detailsList = new ArrayList<>();
         for(User user: users){
-            UserDetails userDetials=new UserDetails(user.getId(),user.getNume(),user.getPrenume(),user.getNrTel(),user.getNrMobil(),user.getMail(),user.getFunctie(),user.getDescriere(),user.getUsername(),user.getPassword());
+            UserDetails userDetials=new UserDetails(user.getId(),user.getNume(),user.getPrenume(),user.getNrTel(),user.getNrMobil(),user.getMail(),user.getFunctie(),user.getDescriere(),user.getUsername(),user.getPassword(), user.getRoles());
             detailsList.add(userDetials);
             
         }
