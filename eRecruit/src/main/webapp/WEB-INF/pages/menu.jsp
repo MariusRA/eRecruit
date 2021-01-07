@@ -18,6 +18,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="${pageContext.request.contextPath}/about.jsp">About us</a>
             </li>
+            
             <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
                 <li class="nav-item ${activePage eq "Users" ? ' active' : ''}">
                     <a class="nav-link" href="${pageContext.request.contextPath}/Users">Users</a>
