@@ -7,15 +7,12 @@ package com.rec.erecruit.servlet;
 
 import com.rec.erecruit.common.UserDetails;
 import com.rec.erecruit.ejb.UserBean;
+import com.rec.erecruit.util.PasswordUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.security.DeclareRoles;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,28 +20,15 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author popa_
+ * @author Andrei Paul
  */
-@DeclareRoles({"AdminRole"})
-@ServletSecurity(
-        value = @HttpConstraint(
-                rolesAllowed = {"AdminRole"}
-        )
-)
-@WebServlet(name = "Users", urlPatterns = {"/Users"})
-public class Users extends HttpServlet {
-
+@WebServlet(name = "EditUser", urlPatterns = {"/EditUser"})
+public class EditUser extends HttpServlet {
+     
     @Inject
-    private UserBean userBean;
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    UserBean userBean;
+
+  
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -53,10 +37,10 @@ public class Users extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Users</title>");            
+            out.println("<title>Servlet EditUser</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Users at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet EditUser at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -74,11 +58,13 @@ public class Users extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        request.setAttribute("activePage", "Users");
+       
         List<UserDetails> users=userBean.getAllUsers();
-        request.setAttribute("users", users);
-        request.getRequestDispatcher("/WEB-INF/pages/users.jsp").forward(request, response);
+        request.setAttribute("users",users);
+        int userId=Integer.parseInt(request.getParameter("id"));
+        UserDetails user= userBean.findById(userId);
+        request.setAttribute("user",user);
+        request.getRequestDispatcher("/WEB-INF/pages/editUser.jsp").forward(request, response);
     }
 
     /**
@@ -92,19 +78,23 @@ public class Users extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
-        String[] userIdsAsString= request.getParameterValues("user_ids");
-        if (userIdsAsString!=null){
-            List<Integer> carIds = new ArrayList<>();
-            for (String carIdAsString : userIdsAsString){
-                carIds.add(Integer.parseInt(carIdAsString));
-            }
-            userBean.deleteUserByIds(carIds);
-        }
-        response.sendRedirect(request.getContextPath()+"/Users");
-        
+         int id =Integer.parseInt(request.getParameter("user_id"));
+         String nume = request.getParameter("last");
+         String prenume = request.getParameter("first");
+         String nrTel = request.getParameter("phone");
+         String nrMobil = request.getParameter("mobile");
+         String mail = request.getParameter("email");
+         String functie = request.getParameter("job");
+         String descriere = request.getParameter("description");
+         String password = request.getParameter("password");
+         
+         
+         String passwordSha256=PasswordUtil.convertToSha256(password);
+         
+         userBean.updateUser(id,prenume, nume, nrTel, nrMobil,mail, functie, descriere, passwordSha256);
+         
+         response.sendRedirect(request.getContextPath()+"/Users");
     }
-    
 
     /**
      * Returns a short description of the servlet.

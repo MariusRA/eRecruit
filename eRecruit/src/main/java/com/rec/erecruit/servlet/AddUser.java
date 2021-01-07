@@ -79,7 +79,8 @@ public class AddUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String nume = request.getParameter("last");
+         
+        String nume = request.getParameter("last");
          String prenume = request.getParameter("first");
          String nrTel = request.getParameter("phone");
          String nrMobil = request.getParameter("mobile");

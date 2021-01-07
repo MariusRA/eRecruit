@@ -8,6 +8,7 @@ package com.rec.erecruit.ejb;
 import com.rec.erecruit.common.UserDetails;
 import com.rec.erecruit.entity.User;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.EJBException;
@@ -27,6 +28,7 @@ public class UserBean {
 
     @PersistenceContext
     private EntityManager em;
+    
     
     public boolean checkDuplicatesDB(String Username){
         boolean flag= false;
@@ -100,6 +102,56 @@ public class UserBean {
         }
         return detailsList;
     }
+    
+    public void deleteUserByIds(Collection<Integer> ids){
+        LOG.info("deleteUsersByIds");
+        for(Integer id:ids){
+            User user=em.find(User.class, id);
+            em.remove(user);
+        }
+        
+    }
+    
+     public UserDetails findById(Integer userId){
+        User user = em.find(User.class,userId);
+        return new UserDetails(user.getId(),user.getNume(),user.getPrenume(),user.getNrTel(),user.getNrMobil(),user.getMail(),user.getFunctie(),user.getDescriere(),user.getUsername(),user.getPassword(), user.getRoles());
+    }
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+
+    public void updateUser(Integer id, String prenume, String nume, String nrTel, String nrMobil, String mail, String functie, String descriere, String passwordSha256) {
+        LOG.info("updateCar");
+        User user= em.find(User.class,id);
+        
+        int lungime=1;
+        String UsernameGenerat;
+        
+        if(nume.length()>5){
+            UsernameGenerat= nume.substring(0, 5) + prenume.substring(0,lungime);
+        } else{
+            UsernameGenerat= nume + prenume.substring(0,lungime);
+        }
+        
+        while(checkDuplicatesDB(UsernameGenerat)){
+            lungime++;
+            
+            if(nume.length()>5){
+                UsernameGenerat= nume.substring(0, 5) + prenume.substring(0,lungime);
+            } else{
+                UsernameGenerat= nume + prenume.substring(0,lungime);
+            }
+        }
+        
+        user.setNume(nume);
+        user.setPrenume(prenume);
+        user.setNrTel(nrTel);
+        user.setNrMobil(nrMobil);
+        user.setMail(mail);
+        user.setFunctie(functie);
+        user.setDescriere(descriere);
+        user.setPassword(passwordSha256);
+        user.setUsername(UsernameGenerat);
+        
+         em.persist(user);
+    }
 }
