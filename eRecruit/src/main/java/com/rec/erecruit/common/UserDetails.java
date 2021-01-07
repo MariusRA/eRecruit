@@ -22,8 +22,9 @@ public class UserDetails implements java.io.Serializable {
     private String descriere;
     private String username;
     private String password;
+    private String roles;
 
-    public UserDetails(Integer id, String nume, String prenume, String nrTel, String nrMobil, String mail, String functie, String descriere, String username, String password) {
+    public UserDetails(Integer id, String nume, String prenume, String nrTel, String nrMobil, String mail, String functie, String descriere, String username, String password, String roles) {
         this.id = id;
         this.nume = nume;
         this.prenume = prenume;
@@ -34,6 +35,15 @@ public class UserDetails implements java.io.Serializable {
         this.descriere = descriere;
         this.username = username;
         this.password = password;
+        this.roles = roles;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 
     public Integer getId() {
