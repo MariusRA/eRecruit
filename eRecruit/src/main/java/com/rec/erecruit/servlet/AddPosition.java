@@ -5,8 +5,7 @@
  */
 package com.rec.erecruit.servlet;
 
-import com.rec.erecruit.ejb.UserBean;
-import com.rec.erecruit.util.PasswordUtil;
+import com.rec.erecruit.ejb.PositionBean;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.inject.Inject;
@@ -20,9 +19,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author popa_
  */
-@WebServlet(name = "AddUser", urlPatterns = {"/AddUser"})
-public class AddUser extends HttpServlet {
+@WebServlet(name = "AddPosition", urlPatterns = {"/AddPosition"})
+public class AddPosition extends HttpServlet {
 
+    @Inject
+    PositionBean positionBean;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -32,10 +33,6 @@ public class AddUser extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-    @Inject
-    UserBean userBean;
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -44,10 +41,10 @@ public class AddUser extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddUser</title>");            
+            out.println("<title>Servlet AddPosition</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddUser at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddPosition at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -65,7 +62,7 @@ public class AddUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/pages/addUser.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/addPosition.jsp").forward(request, response);
     }
 
     /**
@@ -79,23 +76,21 @@ public class AddUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         
-         String nume = request.getParameter("last");
-         String prenume = request.getParameter("first");
-         String nrTel = request.getParameter("phone");
-         String nrMobil = request.getParameter("mobile");
-         String mail = request.getParameter("email");
-         String functie = request.getParameter("job");
-         String descriere = request.getParameter("description");
-         String password = request.getParameter("password");
-         String roles = request.getParameter("roles");
+        
+         String name = request.getParameter("name");
+         Integer number = Integer.parseInt(request.getParameter("number"));
+         Integer openedBy=0;
+         String dep = request.getParameter("dep");
+         String project=request.getParameter("project");
+         String requirements = request.getParameter("req");
+         String responsibilities = request.getParameter("respo");
          
          
-         String passwordSha256=PasswordUtil.convertToSha256(password);
          
-         userBean.createUser(prenume, nume, nrTel, nrMobil,mail, functie, descriere, passwordSha256, roles);
          
-         response.sendRedirect(request.getContextPath()+"/Users");
+         positionBean.createPosition(name, number, number, requirements, dep, requirements, responsibilities);
+         
+         response.sendRedirect(request.getContextPath()+"/Positions");
     }
 
     /**
