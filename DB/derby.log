@@ -1,0 +1,14 @@
+Thu Jan 07 17:30:23 EET 2021 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Thu Jan 07 17:30:25 EET 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0176-dd78-50f8-ffff94e243df 
+on database directory C:\Users\popa_\Desktop\Facultate\Inginerie Software\Proiect\eRecruit\DB\eRecruit with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+Loaded from file:/C:/Users/popa_/GlassFish_Server/javadb/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_261-b12
+user.dir=C:\Users\popa_\GlassFish_Server\javadb
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=C:\Users\popa_\Desktop\Facultate\Inginerie Software\Proiect\eRecruit\DB
+Database Class Loader started - derby.database.classpath=''
