@@ -30,7 +30,7 @@
 <style>
     .carousel-inner, 
     .carousel-item img {
-        height: 550px;
+        height: 600px;
     }
 
     .carousel-item img {
