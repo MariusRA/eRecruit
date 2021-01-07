@@ -60,6 +60,7 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         request.setAttribute("activePage", "Login");
         request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
+        response.sendRedirect(request.getContextPath());
     }
 
     /**
