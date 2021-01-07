@@ -23,6 +23,10 @@
                     <a class="nav-link" href="${pageContext.request.contextPath}/Users">Users</a>
                 </li>
             </c:if>
+            
+            <li class="nav-item ${activePage eq "Positions" ? ' active' : ''}">
+                <a class="nav-link" href="${pageContext.request.contextPath}/Positions">Positions</a>
+            </li>    
             <li class="nav-item">
                 <a class="nav-link" href="#">Apply</a>
             </li>
