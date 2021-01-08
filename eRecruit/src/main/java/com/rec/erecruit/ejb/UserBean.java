@@ -119,29 +119,9 @@ public class UserBean {
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 
-    public void updateUser(Integer id, String prenume, String nume, String nrTel, String nrMobil, String mail, String functie, String descriere, String passwordSha256) {
-        LOG.info("updateCar");
+    public void updateUser(Integer id, String prenume, String nume, String nrTel, String nrMobil, String mail, String functie, String descriere, String passwordSha256, String roles) {
+        LOG.info("updateUser");
         User user= em.find(User.class,id);
-        
-        int lungime=1;
-        String UsernameGenerat;
-        
-        if(nume.length()>5){
-            UsernameGenerat= nume.substring(0, 5) + prenume.substring(0,lungime);
-        } else{
-            UsernameGenerat= nume + prenume.substring(0,lungime);
-        }
-        
-        while(checkDuplicatesDB(UsernameGenerat)){
-            lungime++;
-            
-            if(nume.length()>5){
-                UsernameGenerat= nume.substring(0, 5) + prenume.substring(0,lungime);
-            } else{
-                UsernameGenerat= nume + prenume.substring(0,lungime);
-            }
-        }
-        
         user.setNume(nume);
         user.setPrenume(prenume);
         user.setNrTel(nrTel);
@@ -150,8 +130,7 @@ public class UserBean {
         user.setFunctie(functie);
         user.setDescriere(descriere);
         user.setPassword(passwordSha256);
-        user.setUsername(UsernameGenerat);
-        
-         em.persist(user);
+        user.setRoles(roles);
+        em.persist(user);
     }
 }
