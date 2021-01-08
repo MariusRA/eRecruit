@@ -16,7 +16,6 @@
         <table class="table">
         <thead>
             <tr>
-                <th scope="col">Id</th>
                 <th scope="col">Name</th>
                 <th scope="col">Department</th>
                 <th scope="col">Status</th>
@@ -27,13 +26,15 @@
         <tbody>
         <c:forEach var="position" items="${positions}" varStatus="Status">
           <tr>
-              <td>${position.id}</td>
               <td>${position.name}</td>   
               <td>${position.department}</td>
               <td>${position.status ? "Open" : "Closed"}</td>
               <td>
-                  <a class="btn btn-primary" href="${pageContext.request.contextPath}/EditUser?id=${position.id}" role="button">Edit</a>
-                 <button class="btn btn-primary" name="user_ids" value="${position.id}" type="submit">Delete</button>
+                  <a class="btn btn-primary" href="${pageContext.request.contextPath}/EditPosition?id=${position.id}" role="button">Edit</a>
+                  <button class="btn btn-primary" name="pos_ids" value="${position.id}" type="submit">Delete</button>
+              </td>
+              <td>
+                   <button class="btn btn-primary" type="submit">Apply</button>
               </td>
           </tr>
         </c:forEach>

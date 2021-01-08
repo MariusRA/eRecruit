@@ -87,11 +87,12 @@ public class EditUser extends HttpServlet {
          String functie = request.getParameter("job");
          String descriere = request.getParameter("description");
          String password = request.getParameter("password");
+         String roles = request.getParameter("roles");
          
          
          String passwordSha256=PasswordUtil.convertToSha256(password);
          
-         userBean.updateUser(id,prenume, nume, nrTel, nrMobil,mail, functie, descriere, passwordSha256);
+         userBean.updateUser(id,prenume, nume, nrTel, nrMobil,mail, functie, descriere, passwordSha256, roles);
          
          response.sendRedirect(request.getContextPath()+"/Users");
     }

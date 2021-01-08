@@ -91,35 +91,16 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="description">Role</label>
-                <input type="roles" class="form-control" id="roles" name="password" placeholder="" value="" required>
-                <div class="invalid-feedback">
-                    Role is required.
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="GENDIR">General Director</label>
-                <input type="checkbox" id="GENDIR" name="roles" value="GENDIR">
-                <label for="DEPDIR">Department Director</label>
-                <input type="checkbox" id="GENDIR" name="roles" value="DEPDIR">
-                <label for="HRDIR">HR Director</label>
-                <input type="checkbox" id="HRDIR" name="roles" value="HRDIR">
-                <label for="ADMIN">Administrator</label>
-                <input type="checkbox" id="ADMIN" name="roles" value="ADMIN">
-                <label for="RECRUIT">Recruiter</label>
-                <input type="checkbox" id="RECRUIT" name="roles" value="RECRUIT">
-                <label for="VIEWER">Viewer</label>
-                <input type="checkbox" id="VIEWER" name="roles" value="VIEWER">
-                <div class="invalid-feedback">
-                    Please select a position.
-                </div>
-            </div>
-        </div>
+      
+        <select class="form-select" name="roles" aria-label="Default select example">
+                 <option selected>Choose a Role </option>
+                 <option value="GENERAL DIRECTOR">General Director</option>
+                 <option value="DEPARTMENT DIRECTOR">Department Director</option>
+                 <option value="HR DIRECTOR">HR Director</option>
+                 <option value="ADMINISTRATOR">Administrator</option>
+                 <option value="RECRUITER">Recruiter</option>
+                 <option value="VIEWER">Viewer</option>
+       </select>
     
     <button class="btn btn-primary btn-lg btn-block" type="submit">Save</button>
 

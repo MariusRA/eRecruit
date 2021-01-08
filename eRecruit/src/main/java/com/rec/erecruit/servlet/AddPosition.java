@@ -78,7 +78,7 @@ public class AddPosition extends HttpServlet {
             throws ServletException, IOException {
         
          String name = request.getParameter("name");
-         Integer number = Integer.parseInt(request.getParameter("number"));
+         Integer numberPeople = Integer.parseInt(request.getParameter("number"));
          Integer openedBy=0;
          String dep = request.getParameter("dep");
          String project=request.getParameter("project");
@@ -88,7 +88,7 @@ public class AddPosition extends HttpServlet {
          
          
          
-         positionBean.createPosition(name, number, number, requirements, dep, requirements, responsibilities);
+         positionBean.createPosition(name, numberPeople, openedBy, dep, project, requirements, responsibilities);
          
          response.sendRedirect(request.getContextPath()+"/Positions");
     }
