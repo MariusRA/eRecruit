@@ -86,11 +86,11 @@ public class Positions extends HttpServlet {
         
         String[] PosIdsAsString= request.getParameterValues("pos_ids");
         if (PosIdsAsString!=null){
-            List<Integer> carIds = new ArrayList<>();
-            for (String carIdAsString : PosIdsAsString){
-                carIds.add(Integer.parseInt(carIdAsString));
+            List<Integer> positionIds = new ArrayList<>();
+            for (String positionIdAsString : PosIdsAsString){
+                positionIds.add(Integer.parseInt(positionIdAsString));
             }
-             positionBean.deletePositionByIds(carIds);
+             positionBean.deletePositionByIds(positionIds);
         }
         response.sendRedirect(request.getContextPath()+"/Positions");
         

@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="first">First Name</label>
-                <input type="text" class="form-control" id="first" name="first" placeholder="" value="${user.nume}" required>
+                <input type="text" class="form-control" id="first" name="first" placeholder="" value="${user.lastName}" required>
                 <div class="invalid-feedback">
                     First Name is required.
                 </div>
@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="last">Last Name</label>
-                <input type="text" class="form-control" id="last" name="last" placeholder="" value="${user.prenume}" required>
+                <input type="text" class="form-control" id="last" name="last" placeholder="" value="${user.firstName}" required>
                 <div class="invalid-feedback">
                     Last Name is required.
                 </div>
@@ -33,7 +33,7 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="phone">Phone Number</label>
-                <input type="text" class="form-control" id="phone" name="phone" placeholder="" value="${user.nrTel}" required>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="" value="${user.phoneNumber}" required>
                 <div class="invalid-feedback">
                     Phone Number is required.
                 </div>
@@ -43,7 +43,7 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="mobile">Mobile Number</label>
-                <input type="text" class="form-control" id="mobile" name="mobile" placeholder="" value="${user.nrMobil}" required>
+                <input type="text" class="form-control" id="mobile" name="mobile" placeholder="" value="${user.mobilePhoneNumber}" required>
                 <div class="invalid-feedback">
                     Mobile Number is required.
                 </div>
@@ -53,7 +53,7 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="email">Email</label>
-                <input type="email" class="form-control needs-validation" id="email" name="email" placeholder="" value="${user.mail}" required>
+                <input type="email" class="form-control needs-validation" id="email" name="email" placeholder="" value="${user.email}" required>
                 <div class="invalid-feedback">
                     Email is required.
                 </div>
@@ -63,7 +63,7 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="job">Job Title</label>
-                <input type="text" class="form-control" id="job" name="job" placeholder="" value="${user.functie}" required>
+                <input type="text" class="form-control" id="job" name="job" placeholder="" value="${user.jobTitle}" required>
                 <div class="invalid-feedback">
                     Job Title is required.
                 </div>
@@ -73,7 +73,7 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="description">Description</label>
-                <input type="text" class="form-control" id="description" name="description" placeholder="" value="${user.descriere}" required>
+                <input type="text" class="form-control" id="description" name="description" placeholder="" value="${user.description}" required>
                 <div class="invalid-feedback">
                     Description is required.
                 </div>
