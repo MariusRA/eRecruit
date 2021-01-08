@@ -18,16 +18,17 @@
             <li class="nav-item active">
                 <a class="nav-link" href="${pageContext.request.contextPath}/about.jsp">About us</a>
             </li>
-            
+
             <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
                 <li class="nav-item ${activePage eq "Users" ? ' active' : ''}">
                     <a class="nav-link" href="${pageContext.request.contextPath}/Users">Users</a>
                 </li>
             </c:if>
-            
-            <li class="nav-item ${activePage eq "Positions" ? ' active' : ''}">
-                <a class="nav-link" href="${pageContext.request.contextPath}/Positions">Positions</a>
-            </li>    
+            <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
+                <li class="nav-item ${activePage eq "Positions" ? ' active' : ''}">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/Positions">Positions</a>
+                </li>  
+            </c:if>
             <li class="nav-item">
                 <a class="nav-link" href="#">Apply</a>
             </li>
@@ -37,16 +38,16 @@
         </ul>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-            <c:choose>
-                <c:when test="${pageContext.request.getRemoteUser() == null}">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/Login">Login</a>   
-                </c:when>
-                <c:otherwise>
-                    <a class="nav-link" href="${pageContext.request.contextPath}/Logout">Logout</a>
-                </c:otherwise>
-            </c:choose>
+                <c:choose>
+                    <c:when test="${pageContext.request.getRemoteUser() == null}">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/Login">Login</a>   
+                    </c:when>
+                    <c:otherwise>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/Logout">Logout</a>
+                    </c:otherwise>
+                </c:choose>
             </li>
         </ul>
     </div>
 </nav>
-                    
+

@@ -30,11 +30,11 @@ public class PositionBean {
 
     @PersistenceContext
     private EntityManager em;
-    
-    public void createPosition(String name, Integer numberPeopleWanted,Integer openedBy, String department, String project, String requirements, String responsibilities){
-        
+
+    public void createPosition(String name, Integer numberPeopleWanted, Integer openedBy, String department, String project, String requirements, String responsibilities) {
+
         Position position = new Position();
-        
+
         position.setName(name);
         position.setPeopleWanted(numberPeopleWanted);
         position.setOpenedBy(openedBy);
@@ -43,55 +43,55 @@ public class PositionBean {
         position.setRequirements(requirements);
         position.setResponsibilities(responsibilities);
         position.setStatus(true);
-        
+
         em.persist(position);
-        
+
     }
-    public List<PositionDetails> getAllPositions(){
+
+    public List<PositionDetails> getAllPositions() {
         LOG.info("getAllPositions");
-        try{
-            Query query=em.createQuery("SELECT u FROM Position u");
-            List<Position> positions=(List<Position>) query.getResultList();
+        try {
+            Query query = em.createQuery("SELECT u FROM Position u");
+            List<Position> positions = (List<Position>) query.getResultList();
             return copyPositionsToDetails(positions);
-        }
-        catch(Exception ex){
+        } catch (Exception ex) {
             throw new EJBException(ex);
         }
     }
-    
-    private List<PositionDetails> copyPositionsToDetails(List<Position> positions){
+
+    private List<PositionDetails> copyPositionsToDetails(List<Position> positions) {
         List<PositionDetails> detailsList = new ArrayList<>();
-        for(Position position: positions){
-            PositionDetails positionDetails=new PositionDetails(position.getId(),position.getName(),position.getPeopleWanted(),position.getOpenedBy(),position.getDepartment(),position.getProject(),position.getRequirements(),position.getResponsibilities(),position.isStatus());
+        for (Position position : positions) {
+            PositionDetails positionDetails = new PositionDetails(position.getId(), position.getName(), position.getPeopleWanted(), position.getOpenedBy(), position.getDepartment(), position.getProject(), position.getRequirements(), position.getResponsibilities(), position.isStatus());
             detailsList.add(positionDetails);
-            
+
         }
         return detailsList;
     }
-    
-    public void deletePositionByIds(Collection<Integer> ids){
+
+    public void deletePositionByIds(Collection<Integer> positionIds) {
         LOG.info("deletePositionByIds");
-        for(Integer id:ids){
-            Position position=em.find(Position.class, id);
+        for (Integer positionId : positionIds) {
+            Position position = em.find(Position.class, positionId);
             em.remove(position);
         }
-        
+
     }
-    
-    public PositionDetails findById(Integer posId){
-        Position pos = em.find(Position.class,posId);
-        return new PositionDetails(pos.getId(),pos.getName(),pos.getPeopleWanted(),pos.getOpenedBy(),pos.getDepartment(),pos.getProject(),pos.getRequirements(),pos.getResponsibilities(),pos.isStatus());
+
+    public PositionDetails findById(Integer posId) {
+        Position pos = em.find(Position.class, posId);
+        return new PositionDetails(pos.getId(), pos.getName(), pos.getPeopleWanted(), pos.getOpenedBy(), pos.getDepartment(), pos.getProject(), pos.getRequirements(), pos.getResponsibilities(), pos.isStatus());
     }
-    
-    public void updatePosition(Integer id, String nume, Integer numar,String dep, String proj, String req,String resp) {
+
+    public void updatePosition(Integer id, String name, Integer number, String department, String project, String requirements, String responsibilities) {
         LOG.info("updatePosition");
-        Position pos= em.find(Position.class,id);
-        pos.setName(nume);
-        pos.setPeopleWanted(numar);
-        pos.setDepartment(dep);
-        pos.setProject(proj);
-        pos.setRequirements(req);
-        pos.setResponsibilities(resp);
+        Position pos = em.find(Position.class, id);
+        pos.setName(name);
+        pos.setPeopleWanted(number);
+        pos.setDepartment(department);
+        pos.setProject(project);
+        pos.setRequirements(requirements);
+        pos.setResponsibilities(responsibilities);
         em.persist(pos);
     }
     // Add business logic below. (Right-click in editor and choose

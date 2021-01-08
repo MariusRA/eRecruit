@@ -28,107 +28,103 @@ public class UserBean {
 
     @PersistenceContext
     private EntityManager em;
-    
-    
-    public boolean checkDuplicatesDB(String Username){
-        boolean flag= false;
-        
-        List<UserDetails> users= getAllUsers();
-        
-        for (UserDetails user : users){
-            if (user.getUsername().equals(Username)){
-                flag=true;
+
+    public boolean checkDuplicatesDB(String Username) {
+        boolean flag = false;
+
+        List<UserDetails> users = getAllUsers();
+
+        for (UserDetails user : users) {
+            if (user.getUsername().equals(Username)) {
+                flag = true;
             }
         }
         return flag;
     }
-    
-    public void createUser(String FirstName,String LastName, String PhoneNo, String MobileNo, String Mail, String JobTitle, String Description, String PasswordSha256, String Roles){
-        User user= new User();
-        
-        int lungime=1;
-        String UsernameGenerat;
-        
-        if(LastName.length()>5){
-            UsernameGenerat= LastName.substring(0, 5) + FirstName.substring(0,lungime);
-        } else{
-            UsernameGenerat= LastName + FirstName.substring(0,lungime);
+
+    public void createUser(String FirstName, String LastName, String PhoneNo, String MobileNo, String Mail, String JobTitle, String Description, String PasswordSha256, String Roles) {
+        User user = new User();
+
+        int length = 1;
+        String generatedUsername;
+
+        if (LastName.length() > 5) {
+            generatedUsername = LastName.substring(0, 5) + FirstName.substring(0, length);
+        } else {
+            generatedUsername = LastName + FirstName.substring(0, length);
         }
-        
-        while(checkDuplicatesDB(UsernameGenerat)){
-            lungime++;
-            
-            if(LastName.length()>5){
-                UsernameGenerat= LastName.substring(0, 5) + FirstName.substring(0,lungime);
-            } else{
-                UsernameGenerat= LastName + FirstName.substring(0,lungime);
+
+        while (checkDuplicatesDB(generatedUsername)) {
+            length++;
+
+            if (LastName.length() > 5) {
+                generatedUsername = LastName.substring(0, 5) + FirstName.substring(0, length);
+            } else {
+                generatedUsername = LastName + FirstName.substring(0, length);
             }
         }
-        
-        
-        user.setNume(LastName);
-        user.setPrenume(FirstName);
-        user.setNrTel(PhoneNo);
-        user.setNrMobil(MobileNo);
-        user.setMail(Mail);
-        user.setFunctie(JobTitle);
-        user.setDescriere(Description);
+
+        user.setLastName(LastName);
+        user.setFirstName(FirstName);
+        user.setPhoneNumber(PhoneNo);
+        user.setMobilePhoneNumber(MobileNo);
+        user.setEmail(Mail);
+        user.setJobTitle(JobTitle);
+        user.setDescription(Description);
         user.setPassword(PasswordSha256);
-        user.setUsername(UsernameGenerat);
+        user.setUsername(generatedUsername);
         user.setRoles(Roles);
-        
-        
+
         em.persist(user);
     }
-    
-    public List<UserDetails> getAllUsers(){
+
+    public List<UserDetails> getAllUsers() {
         LOG.info("getAllUsers");
-        try{
-            Query query=em.createQuery("SELECT u FROM User u");
-            List<User> users=(List<User>) query.getResultList();
+        try {
+            Query query = em.createQuery("SELECT u FROM User u");
+            List<User> users = (List<User>) query.getResultList();
             return copyUsersToDetails(users);
-        }
-        catch(Exception ex){
+        } catch (Exception ex) {
             throw new EJBException(ex);
         }
     }
-    
-    private List<UserDetails> copyUsersToDetails(List<User> users){
+
+    private List<UserDetails> copyUsersToDetails(List<User> users) {
         List<UserDetails> detailsList = new ArrayList<>();
-        for(User user: users){
-            UserDetails userDetials=new UserDetails(user.getId(),user.getNume(),user.getPrenume(),user.getNrTel(),user.getNrMobil(),user.getMail(),user.getFunctie(),user.getDescriere(),user.getUsername(),user.getPassword(), user.getRoles());
+        for (User user : users) {
+            UserDetails userDetials = new UserDetails(user.getId(), user.getLastName(), user.getFirstName(), user.getPhoneNumber(), user.getMobilePhoneNumber(), user.getEmail(), user.getJobTitle(), user.getDescription(), user.getUsername(), user.getPassword(), user.getRoles());
             detailsList.add(userDetials);
-            
+
         }
         return detailsList;
     }
-    
-    public void deleteUserByIds(Collection<Integer> ids){
+
+    public void deleteUserByIds(Collection<Integer> userIds) {
         LOG.info("deleteUsersByIds");
-        for(Integer id:ids){
-            User user=em.find(User.class, id);
+        for (Integer userId : userIds) {
+            User user = em.find(User.class, userId);
             em.remove(user);
         }
-        
+
     }
-    
-     public UserDetails findById(Integer userId){
-        User user = em.find(User.class,userId);
-        return new UserDetails(user.getId(),user.getNume(),user.getPrenume(),user.getNrTel(),user.getNrMobil(),user.getMail(),user.getFunctie(),user.getDescriere(),user.getUsername(),user.getPassword(), user.getRoles());
+
+    public UserDetails findById(Integer userId) {
+        User user = em.find(User.class, userId);
+        return new UserDetails(user.getId(), user.getLastName(), user.getFirstName(), user.getPhoneNumber(), user.getMobilePhoneNumber(), user.getEmail(), user.getJobTitle(), user.getDescription(), user.getUsername(), user.getPassword(), user.getRoles());
     }
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 
-    public void updateUser(Integer id, String prenume, String nume, String nrTel, String nrMobil, String mail, String functie, String descriere, String passwordSha256, String roles) {
+    public void updateUser(Integer id, String firstName, String lastName, String phoneNumber, String mobilePhoneNumber, String email, String jobTitle, String description, String passwordSha256, String roles) {
         LOG.info("updateUser");
-        User user= em.find(User.class,id);
-        user.setNume(nume);
-        user.setPrenume(prenume);
-        user.setNrTel(nrTel);
-        user.setNrMobil(nrMobil);
-        user.setMail(mail);
-        user.setFunctie(functie);
-        user.setDescriere(descriere);
+        User user = em.find(User.class, id);
+        user.setLastName(lastName);
+        user.setFirstName(firstName);
+        user.setPhoneNumber(phoneNumber);
+        user.setMobilePhoneNumber(mobilePhoneNumber);
+        user.setEmail(email);
+        user.setJobTitle(jobTitle);
+        user.setDescription(description);
         user.setPassword(passwordSha256);
         user.setRoles(roles);
         em.persist(user);
