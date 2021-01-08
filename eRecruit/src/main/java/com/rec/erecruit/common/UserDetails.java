@@ -13,29 +13,109 @@ public class UserDetails implements java.io.Serializable {
     
     private Integer id;
     
-    private String nume;
-    private String prenume;
-    private String nrTel;
-    private String nrMobil;
-    private String mail;
-    private String functie;
-    private String descriere;
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private String mobilePhoneNumber;
+    private String email;
+    private String jobTitle;
+    private String description;
     private String username;
     private String password;
     private String roles;
 
-    public UserDetails(Integer id, String nume, String prenume, String nrTel, String nrMobil, String mail, String functie, String descriere, String username, String password, String roles) {
+    public UserDetails(Integer id, String firstName, String lastName, String phoneNumber, String mobilePhoneNumber, String email, String jobTitle, String description, String username, String password, String roles) {
         this.id = id;
-        this.nume = nume;
-        this.prenume = prenume;
-        this.nrTel = nrTel;
-        this.nrMobil = nrMobil;
-        this.mail = mail;
-        this.functie = functie;
-        this.descriere = descriere;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.mobilePhoneNumber = mobilePhoneNumber;
+        this.email = email;
+        this.jobTitle = jobTitle;
+        this.description = description;
         this.username = username;
         this.password = password;
         this.roles = roles;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getMobilePhoneNumber() {
+        return mobilePhoneNumber;
+    }
+
+    public void setMobilePhoneNumber(String mobilePhoneNumber) {
+        this.mobilePhoneNumber = mobilePhoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getRoles() {
@@ -46,44 +126,6 @@ public class UserDetails implements java.io.Serializable {
         this.roles = roles;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public String getNume() {
-        return nume;
-    }
-
-    public String getPrenume() {
-        return prenume;
-    }
-
-    public String getNrTel() {
-        return nrTel;
-    }
-
-    public String getNrMobil() {
-        return nrMobil;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public String getFunctie() {
-        return functie;
-    }
-
-    public String getDescriere() {
-        return descriere;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
+    
     
 }

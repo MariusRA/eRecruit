@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * @author popa_
  */
 @Entity
-@Table(name="POSITIONS")
+@Table(name = "POSITIONS")
 public class Position implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -100,10 +100,6 @@ public class Position implements Serializable {
     public void setStatus(boolean status) {
         this.status = status;
     }
-    
-    
-    
-    
 
     public Integer getId() {
         return id;
@@ -137,5 +133,5 @@ public class Position implements Serializable {
     public String toString() {
         return "com.rec.erecruit.entity.Position[ id=" + id + " ]";
     }
-    
+
 }

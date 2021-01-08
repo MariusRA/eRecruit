@@ -27,7 +27,7 @@ public class EditPosition extends HttpServlet {
 
     @Inject
     PositionBean positionBean;
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -36,7 +36,7 @@ public class EditPosition extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EditPosition</title>");            
+            out.println("<title>Servlet EditPosition</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet EditPosition at " + request.getContextPath() + "</h1>");
@@ -44,19 +44,19 @@ public class EditPosition extends HttpServlet {
             out.println("</html>");
         }
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        List<PositionDetails> positions=positionBean.getAllPositions();
-        request.setAttribute("positions",positions);
-        
-        int positionId=Integer.parseInt(request.getParameter("id"));
-        PositionDetails position= positionBean.findById(positionId);
-        request.setAttribute("position",position);
+
+        List<PositionDetails> positions = positionBean.getAllPositions();
+        request.setAttribute("positions", positions);
+
+        int positionId = Integer.parseInt(request.getParameter("id"));
+        PositionDetails position = positionBean.findById(positionId);
+        request.setAttribute("position", position);
         request.getRequestDispatcher("/WEB-INF/pages/editPosition.jsp").forward(request, response);
     }
-    
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -69,20 +69,19 @@ public class EditPosition extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String nume = request.getParameter("name");
-         int id= Integer.parseInt(request.getParameter("pos_id"));
-         int peoplewanted= Integer.parseInt(request.getParameter("number"));
-         String dep = request.getParameter("dep");
-         String proj = request.getParameter("project");
-         String req = request.getParameter("req");
-         String resp = request.getParameter("respo");
-   
-         
-        positionBean.updatePosition(id,nume,peoplewanted,dep,proj,req,resp);
-         
-        response.sendRedirect(request.getContextPath()+"/Positions");
+        String name = request.getParameter("name");
+        int id = Integer.parseInt(request.getParameter("pos_id"));
+        int peopleWanted = Integer.parseInt(request.getParameter("number"));
+        String department = request.getParameter("dep");
+        String project = request.getParameter("project");
+        String requirements = request.getParameter("req");
+        String responsibilities = request.getParameter("respo");
+
+        positionBean.updatePosition(id, name, peopleWanted, department, project, requirements, responsibilities);
+
+        response.sendRedirect(request.getContextPath() + "/Positions");
     }
-    
+
     @Override
     public String getServletInfo() {
         return "Short description";
