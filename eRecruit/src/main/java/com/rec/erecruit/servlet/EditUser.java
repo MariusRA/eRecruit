@@ -24,11 +24,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "EditUser", urlPatterns = {"/EditUser"})
 public class EditUser extends HttpServlet {
-     
+
     @Inject
     UserBean userBean;
 
-  
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -37,7 +36,7 @@ public class EditUser extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EditUser</title>");            
+            out.println("<title>Servlet EditUser</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet EditUser at " + request.getContextPath() + "</h1>");
@@ -58,12 +57,12 @@ public class EditUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        List<UserDetails> users=userBean.getAllUsers();
-        request.setAttribute("users",users);
-        int userId=Integer.parseInt(request.getParameter("id"));
-        UserDetails user= userBean.findById(userId);
-        request.setAttribute("user",user);
+
+        List<UserDetails> users = userBean.getAllUsers();
+        request.setAttribute("users", users);
+        int userId = Integer.parseInt(request.getParameter("id"));
+        UserDetails user = userBean.findById(userId);
+        request.setAttribute("user", user);
         request.getRequestDispatcher("/WEB-INF/pages/editUser.jsp").forward(request, response);
     }
 
@@ -78,22 +77,22 @@ public class EditUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         int id =Integer.parseInt(request.getParameter("user_id"));
-         String nume = request.getParameter("last");
-         String prenume = request.getParameter("first");
-         String nrTel = request.getParameter("phone");
-         String nrMobil = request.getParameter("mobile");
-         String mail = request.getParameter("email");
-         String functie = request.getParameter("job");
-         String descriere = request.getParameter("description");
-         String password = request.getParameter("password");
-         
-         
-         String passwordSha256=PasswordUtil.convertToSha256(password);
-         
-         userBean.updateUser(id,prenume, nume, nrTel, nrMobil,mail, functie, descriere, passwordSha256);
-         
-         response.sendRedirect(request.getContextPath()+"/Users");
+        int id = Integer.parseInt(request.getParameter("user_id"));
+        String lastName = request.getParameter("last");
+        String firstName = request.getParameter("first");
+        String phoneNumber = request.getParameter("phone");
+        String mobilePhoneNumber = request.getParameter("mobile");
+        String email = request.getParameter("email");
+        String jobTitle = request.getParameter("job");
+        String description = request.getParameter("description");
+        String password = request.getParameter("password");
+        String roles = request.getParameter("roles");
+
+        String passwordSha256 = PasswordUtil.convertToSha256(password);
+
+        userBean.updateUser(id, firstName, lastName, phoneNumber, mobilePhoneNumber, email, jobTitle, description, passwordSha256, roles);
+
+        response.sendRedirect(request.getContextPath() + "/Users");
     }
 
     /**
