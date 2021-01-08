@@ -95,11 +95,11 @@ public class Users extends HttpServlet {
       
         String[] userIdsAsString= request.getParameterValues("user_ids");
         if (userIdsAsString!=null){
-            List<Integer> carIds = new ArrayList<>();
-            for (String carIdAsString : userIdsAsString){
-                carIds.add(Integer.parseInt(carIdAsString));
+            List<Integer> userIds = new ArrayList<>();
+            for (String userIdAsString : userIdsAsString){
+                userIds.add(Integer.parseInt(userIdAsString));
             }
-            userBean.deleteUserByIds(carIds);
+            userBean.deleteUserByIds(userIds);
         }
         response.sendRedirect(request.getContextPath()+"/Users");
         
