@@ -29,8 +29,8 @@
           <tr>
               <td>${user.id}</td>
               <td>${user.username}</td>
-              <td>${user.mail}</td>     
-              <td>${user.nrTel}</td>
+              <td>${user.email}</td>     
+              <td>${user.phoneNumber}</td>
               <td>
                   <a class="btn btn-primary" href="${pageContext.request.contextPath}/EditUser?id=${user.id}" role="button">Edit</a>
                  <button class="btn btn-primary" name="user_ids" value="${user.id}" type="submit">Delete</button>

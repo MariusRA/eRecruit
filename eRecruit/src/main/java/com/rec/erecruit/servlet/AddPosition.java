@@ -24,6 +24,7 @@ public class AddPosition extends HttpServlet {
 
     @Inject
     PositionBean positionBean;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,7 +42,7 @@ public class AddPosition extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddPosition</title>");            
+            out.println("<title>Servlet AddPosition</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet AddPosition at " + request.getContextPath() + "</h1>");
@@ -76,21 +77,18 @@ public class AddPosition extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-         String name = request.getParameter("name");
-         Integer numberPeople = Integer.parseInt(request.getParameter("number"));
-         Integer openedBy=0;
-         String dep = request.getParameter("dep");
-         String project=request.getParameter("project");
-         String requirements = request.getParameter("req");
-         String responsibilities = request.getParameter("respo");
-         
-         
-         
-         
-         positionBean.createPosition(name, numberPeople, openedBy, dep, project, requirements, responsibilities);
-         
-         response.sendRedirect(request.getContextPath()+"/Positions");
+
+        String name = request.getParameter("name");
+        Integer numberOfPeople = Integer.parseInt(request.getParameter("number"));
+        Integer openedBy = 0; //needs modifies
+        String department = request.getParameter("dep");
+        String project = request.getParameter("project");
+        String requirements = request.getParameter("req");
+        String responsibilities = request.getParameter("respo");
+
+        positionBean.createPosition(name, numberOfPeople, openedBy, department, project, requirements, responsibilities);
+
+        response.sendRedirect(request.getContextPath() + "/Positions");
     }
 
     /**
