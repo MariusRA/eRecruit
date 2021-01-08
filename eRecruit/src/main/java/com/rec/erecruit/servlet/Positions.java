@@ -9,6 +9,7 @@ import com.rec.erecruit.common.PositionDetails;
 import com.rec.erecruit.ejb.PositionBean;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author popa_
+ * @author Andrei Paul
  */
 @WebServlet(name = "Positions", urlPatterns = {"/Positions"})
 public class Positions extends HttpServlet {
@@ -82,8 +83,19 @@ public class Positions extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String[] PosIdsAsString= request.getParameterValues("pos_ids");
+        if (PosIdsAsString!=null){
+            List<Integer> carIds = new ArrayList<>();
+            for (String carIdAsString : PosIdsAsString){
+                carIds.add(Integer.parseInt(carIdAsString));
+            }
+             positionBean.deletePositionByIds(carIds);
+        }
+        response.sendRedirect(request.getContextPath()+"/Positions");
+        
     }
+    
 
     /**
      * Returns a short description of the servlet.

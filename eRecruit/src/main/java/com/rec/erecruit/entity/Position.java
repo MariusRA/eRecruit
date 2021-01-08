@@ -24,7 +24,6 @@ public class Position implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    
     private String name;
     private Integer peopleWanted;
     private Integer openedBy;
