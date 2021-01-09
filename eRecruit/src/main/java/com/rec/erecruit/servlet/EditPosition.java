@@ -58,14 +58,7 @@ public class EditPosition extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/pages/editPosition.jsp").forward(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -76,8 +69,8 @@ public class EditPosition extends HttpServlet {
         String project = request.getParameter("project");
         String requirements = request.getParameter("req");
         String responsibilities = request.getParameter("respo");
-
-        positionBean.updatePosition(id, name, peopleWanted, department, project, requirements, responsibilities);
+        boolean status= Boolean.parseBoolean(request.getParameter("status"));
+        positionBean.updatePosition(id, name, peopleWanted, department, project, requirements, responsibilities, status);
 
         response.sendRedirect(request.getContextPath() + "/Positions");
     }
