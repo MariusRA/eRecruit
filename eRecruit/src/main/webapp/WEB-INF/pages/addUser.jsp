@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-       
+
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="last">Last Name</label>
@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-       
+
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="phone">Phone Number</label>
@@ -41,7 +41,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="mobile">Mobile Number</label>
@@ -51,7 +51,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="email">Email</label>
@@ -61,7 +61,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="job">Job Title</label>
@@ -71,7 +71,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="description">Description</label>
@@ -81,7 +81,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="description">Password</label>
@@ -91,39 +91,40 @@
                 </div>
             </div>
         </div>
-      
+
         <select class="form-select" name="roles" aria-label="Default select example">
-                 <option selected>Choose a Role </option>
-                 <option value="GENERAL DIRECTOR">General Director</option>
-                 <option value="DEPARTMENT DIRECTOR">Department Director</option>
-                 <option value="HR DIRECTOR">HR Director</option>
-                 <option value="ADMINISTRATOR">Administrator</option>
-                 <option value="RECRUITER">Recruiter</option>
-                 <option value="VIEWER">Viewer</option>
-       </select>
-    
-    <button class="btn btn-primary btn-lg btn-block" type="submit">Save</button>
+            <option selected>Choose a Role </option>
+            <option value="GENERAL DIRECTOR">General Director</option>
+            <option value="DEPARTMENT DIRECTOR">Department Director</option>
+            <option value="HR DIRECTOR">HR Director</option>
+            <option value="ADMINISTRATOR">Administrator</option>
+            <option value="RECRUITER">Recruiter</option>
+            <option value="VIEWER">Viewer</option>
+        </select>
 
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Save</button>
+    </form>
     <script>
-      // Example starter JavaScript for disabling form submissions if there are invalid fields
-      (function() {
-        'use strict';
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
 
-        window.addEventListener('load', function() {
-          // Fetch all the forms we want to apply custom Bootstrap validation styles to
-          var forms = document.getElementsByClassName('needs-validation');
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
 
-          // Loop over them and prevent submission
-          var validation = Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
-              if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-              }
-              form.classList.add('was-validated');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
             }, false);
-          });
-        }, false);
-      })();
+        })();
     </script>
+
 </t:pageTemplate>
