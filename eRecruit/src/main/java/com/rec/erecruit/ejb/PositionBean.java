@@ -83,7 +83,7 @@ public class PositionBean {
         return new PositionDetails(pos.getId(), pos.getName(), pos.getPeopleWanted(), pos.getOpenedBy(), pos.getDepartment(), pos.getProject(), pos.getRequirements(), pos.getResponsibilities(), pos.isStatus());
     }
 
-    public void updatePosition(Integer id, String name, Integer number, String department, String project, String requirements, String responsibilities) {
+    public void updatePosition(Integer id, String name, Integer number, String department, String project, String requirements, String responsibilities, boolean status) {
         LOG.info("updatePosition");
         Position pos = em.find(Position.class, id);
         pos.setName(name);
@@ -92,6 +92,7 @@ public class PositionBean {
         pos.setProject(project);
         pos.setRequirements(requirements);
         pos.setResponsibilities(responsibilities);
+        pos.setStatus(status);
         em.persist(pos);
     }
     // Add business logic below. (Right-click in editor and choose
