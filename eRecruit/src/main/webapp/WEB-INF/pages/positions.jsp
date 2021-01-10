@@ -37,7 +37,7 @@
               </c:if>
               <c:if test="${position.status=='true'}">
               <td>
-                   <button class="btn btn-primary" type="submit">Apply</button>
+                   <button class="btn btn-primary" name="apply" value="${position.id}"type="submit">Apply</button>
               </td>
               </c:if>
           </tr>

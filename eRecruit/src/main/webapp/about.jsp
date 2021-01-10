@@ -22,10 +22,12 @@
     <h1>If you are interested in using eRecruit, contact us:</h1>
     <ul>
         <li>Email: contact@eRecruit.com</li>
-        <li>Phone Number: 0269627354</li>
-        <li>Mobile Phone Number: 0755789765</li>
+
+        <li>Telephone: 0269627354</li>
+        <li>Mobile Phone: 0755789765</li>
+
         <li>Fax: 1-408-999 8888</li>
-    </ul>
+   </ul>
     
    
 </t:pageTemplate>

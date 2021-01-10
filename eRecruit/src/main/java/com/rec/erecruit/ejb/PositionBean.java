@@ -6,9 +6,8 @@
 package com.rec.erecruit.ejb;
 
 import com.rec.erecruit.common.PositionDetails;
-import com.rec.erecruit.common.UserDetails;
+import com.rec.erecruit.entity.Applicant;
 import com.rec.erecruit.entity.Position;
-import com.rec.erecruit.entity.User;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -94,6 +93,14 @@ public class PositionBean {
         pos.setResponsibilities(responsibilities);
         pos.setStatus(status);
         em.persist(pos);
+    }
+    
+    public void createApplicant(Integer userId,Integer positionId){
+    LOG.info("createApplicant");
+    Applicant app = new Applicant();
+    app.setUserId(userId);
+    app.setPositionId(positionId);
+    em.persist(app);
     }
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
