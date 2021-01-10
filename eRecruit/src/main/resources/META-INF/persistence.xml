@@ -4,6 +4,7 @@
   <persistence-unit name="my_persistence_unit">
     <jta-data-source>jdbc/sample</jta-data-source>
     <class>com.rec.erecruit.entity.Position</class>
+    <class>com.rec.erecruit.entity.Applicant</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/eRecruit"/>
       <property name="javax.persistence.jdbc.user" value="eRecruitUser"/>

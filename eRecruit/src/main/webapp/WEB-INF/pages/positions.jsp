@@ -34,7 +34,7 @@
                   <button class="btn btn-primary" name="pos_ids" value="${position.id}" type="submit">Delete</button>
               </td>
               <td>
-                   <button class="btn btn-primary" type="submit">Apply</button>
+                   <button class="btn btn-primary" name="apply" value="${position.id}"type="submit">Apply</button>
               </td>
           </tr>
         </c:forEach>
