@@ -18,9 +18,8 @@
             <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Department</th>
-                <th scope="col">Status</th>
-                <th></th>
-                <th></th>
+                <th scope="col">Project</th> 
+                <th scope="col">Status</th> 
             </tr>
         </thead>
         <tbody>
@@ -28,14 +27,19 @@
           <tr>
               <td>${position.name}</td>   
               <td>${position.department}</td>
+              <td>${position.project}</td>
               <td>${position.status ? "Open" : "Closed"}</td>
+               <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
               <td>
                   <a class="btn btn-primary" href="${pageContext.request.contextPath}/EditPosition?id=${position.id}" role="button">Edit</a>
                   <button class="btn btn-primary" name="pos_ids" value="${position.id}" type="submit">Delete</button>
               </td>
+              </c:if>
+              <c:if test="${position.status=='true'}">
               <td>
-                   <button class="btn btn-primary" type="submit">Apply</button>
+                   <button class="btn btn-primary" name="apply" value="${position.id}"type="submit">Apply</button>
               </td>
+              </c:if>
           </tr>
         </c:forEach>
           </tbody>

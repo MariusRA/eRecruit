@@ -18,10 +18,8 @@
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Username</th>
-                 <th scope="col">Email</th>
-                <th scope="col">Nr.Telefon</th>
-                <th></th>
-                <th></th>
+                <th scope="col">Email</th>
+                <th scope="col">Nr.Telefon</th>        
             </tr>
         </thead>
         <tbody>
@@ -40,6 +38,4 @@
           </tbody>
         </table>
     </form>
-
-
 </t:pageTemplate>
