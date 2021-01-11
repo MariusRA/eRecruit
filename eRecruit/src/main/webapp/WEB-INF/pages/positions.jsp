@@ -14,37 +14,42 @@
         <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddPosition" role="button">Add Position</a>
         </div>  
         <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Department</th>
-                <th scope="col">Project</th> 
-                <th scope="col">Status</th> 
-            </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="position" items="${positions}" varStatus="Status">
-          <tr>
-              <td>${position.name}</td>   
-              <td>${position.department}</td>
-              <td>${position.project}</td>
-              <td>${position.status ? "Open" : "Closed"}</td>
-               <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
-              <td>
-                  <a class="btn btn-primary" href="${pageContext.request.contextPath}/EditPosition?id=${position.id}" role="button">Edit</a>
-                  <button class="btn btn-primary" name="pos_ids" value="${position.id}" type="submit">Delete</button>
-              </td>
-              </c:if>
-              <c:if test="${position.status=='true'}">
-              <td>
-                   <button class="btn btn-primary" name="apply" value="${position.id}"type="submit">Apply</button>
-              </td>
-              </c:if>
-          </tr>
-        </c:forEach>
-          </tbody>
+            <thead class="thead-light"
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Project</th> 
+                    <th scope="col">Status</th> 
+                    <th scope="col" class="options_position">Options</th>
+                    <th scope="col">Apply</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="position" items="${positions}" varStatus="Status">
+                <tr>
+                    <td>${position.name}</td>   
+                    <td>${position.department}</td>
+                    <td>${position.project}</td>
+                    <td>${position.status ? "Open" : "Closed"}</td>
+                    <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
+                        <td class="options_position">
+                            <a class="btn btn-primary" href="${pageContext.request.contextPath}/EditPosition?id=${position.id}" role="button">Edit</a>
+                            <button class="btn btn-primary" name="pos_ids" value="${position.id}" type="submit">Delete</button>
+                        </td>
+                    </c:if>
+                    <c:if test="${position.status=='true'}">
+                        <td>
+                             <button class="btn btn-primary" name="apply" value="${position.id}"type="submit">Apply</button>
+                        </td>
+                    </c:if>
+                </tr>
+                </c:forEach>
+            </tbody>
         </table>
     </form>
-
-
 </t:pageTemplate>
+<style>
+    .options_position {
+        text-align: right;
+    }
+</style>
