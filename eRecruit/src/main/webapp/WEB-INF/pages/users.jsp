@@ -43,7 +43,7 @@
 
 <style>
     .table-dark {
-        background-color: hsl(145, 46%, 7%);
+        background-color: hsl(81, 0%, 42%);
     }
     .table {
         margin: 0 auto;
@@ -52,22 +52,23 @@
     body {
         background-image: url('${pageContext.request.contextPath}/carousel/leaf.jpg');
     }
-    thead {
-        background-color: hsl(145, 46%, 13%)
+    thead,
+    .options_user a, 
+    .options_user button {
+        background-color: hsl(86, 6%, 26%);
     }
     .options_user {
         text-align: right;
     }
     .options_user a, 
     .options_user button {
-        border-color: hsl(145, 61%, 19%);
-        background-color: hsl(145, 61%, 9%);
+        border-color: hsl(86, 6%, 20%);
     }
     .options_user a:hover,
     .btn-primary:active,
     .btn-primary:hover {
-        background-color: hsl(145, 61%, 17%) !important;
-        border-color: hsl(145, 61%, 17%) !important;
+        background-color:  hsl(89, 5%, 37%) !important;
+        border-color:  hsl(89, 5%, 37%) !important;
     }
     #add_user {
         margin: 25px 0;
