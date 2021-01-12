@@ -16,6 +16,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -128,5 +129,20 @@ public class UserBean {
         user.setPassword(passwordSha256);
         user.setRoles(roles);
         em.persist(user);
+    }
+
+    public Integer getIdByUsername(String username) {
+        LOG.info("getIdByUsername");
+        try {
+            //Query query = em.createQuery("SELECT u FROM User u WHERE u.username LIKE ?1").setParameter(1, username);
+            
+            TypedQuery<User> typedQuery=em.createQuery("SELECT u FROM User u WHERE u.username = :orice", User.class).setParameter("orice", username);   
+            List<User> user =  typedQuery.getResultList();
+            
+            
+            return user.get(0).getId();
+        } catch (Exception ex) {
+            throw new EJBException(ex);
+        }
     }
 }

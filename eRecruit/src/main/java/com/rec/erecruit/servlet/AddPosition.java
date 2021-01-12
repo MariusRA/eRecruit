@@ -6,6 +6,7 @@
 package com.rec.erecruit.servlet;
 
 import com.rec.erecruit.ejb.PositionBean;
+import com.rec.erecruit.ejb.UserBean;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.inject.Inject;
@@ -24,6 +25,9 @@ public class AddPosition extends HttpServlet {
 
     @Inject
     PositionBean positionBean;
+    
+    @Inject
+    UserBean userBean;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -78,9 +82,11 @@ public class AddPosition extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String username = request.getRemoteUser();
+        
         String name = request.getParameter("name");
         Integer numberOfPeople = Integer.parseInt(request.getParameter("number"));
-        Integer openedBy = 0; //needs modifies
+        Integer openedBy = userBean.getIdByUsername(username);
         String department = request.getParameter("dep");
         String project = request.getParameter("project");
         String requirements = request.getParameter("req");

@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -60,8 +61,12 @@ public class Login extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("activePage", "Login");
+        
+        HttpSession session=request.getSession(true); 
+        //String username=request.getRemoteUser();
+        session.setAttribute("uname","sandra");  
         request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
-        response.sendRedirect(request.getContextPath());
+        //response.sendRedirect(request.getContextPath());
     }
 
     /**
