@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * @author eli10
  */
 @Entity
-@Table(name="APPLICANTS")
+@Table(name = "APPLICANTS")
 public class Applicant implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,9 +43,7 @@ public class Applicant implements Serializable {
     public void setPositionId(Integer positionId) {
         this.positionId = positionId;
     }
-    
-    
-    
+
     public Integer getId() {
         return id;
     }
@@ -78,5 +76,5 @@ public class Applicant implements Serializable {
     public String toString() {
         return "com.rec.erecruit.entity.Applicant[ id=" + id + " ]";
     }
-    
+
 }
