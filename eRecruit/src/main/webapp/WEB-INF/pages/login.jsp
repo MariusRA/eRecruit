@@ -29,7 +29,7 @@
         background: url("${pageContext.request.contextPath}/carousel/2522-login.jpg");
         width: 100%;
         background-size: cover;
-        height: 578px;
+        height: 600px;
     }
     .custom-radio {
         width: 160px;
