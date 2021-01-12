@@ -27,7 +27,7 @@
             <tbody>
                 <c:forEach var="position" items="${positions}" varStatus="Status">
                 <tr>
-                    <td>${position.name}</td>   
+                    <td><a href="${pageContext.request.contextPath}/PositionDetailsInf?id=${position.id}">${position.name}</a></td>   
                     <td>${position.department}</td>
                     <td>${position.project}</td>
                     <td>${position.status ? "Open" : "Closed"}</td>
