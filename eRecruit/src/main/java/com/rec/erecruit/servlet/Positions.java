@@ -101,7 +101,7 @@ public class Positions extends HttpServlet {
         String[] positionId = request.getParameterValues("apply");
         if (positionId != null) {
             HttpSession session = request.getSession();
-            String usn = String.valueOf(session.getAttribute("uname"));
+            String usn = request.getRemoteUser();
             Integer userId = userBean.getIdByUsername(usn);
             Integer positionId_int = Integer.parseInt(request.getParameterValues("apply")[0]);
             positionBean.createApplicant(userId, positionId_int);
