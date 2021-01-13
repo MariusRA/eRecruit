@@ -88,6 +88,9 @@ public class AddUser extends HttpServlet {
         String description = request.getParameter("description");
         String password = request.getParameter("password");
         String roles = request.getParameter("roles");
+        String[] country = request.getParameterValues("country");
+        String phone = request.getParameter("phone");
+        
 
         String passwordSha256 = PasswordUtil.convertToSha256(password);
 
