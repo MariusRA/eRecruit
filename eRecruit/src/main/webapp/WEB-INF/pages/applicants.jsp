@@ -25,7 +25,9 @@
                             <td>${user.username}</td>
                             <td>${user.email}</td>     
                             <td class="options_applicants">            
-                                <button class="btn btn-primary" name="apply" value="" type="submit">Apply</button>
+                                <a class="btn btn-primary" href="${pageContext.request.contextPath}/Candidates?applicantAccepted=${user.id}"role="button">✓</a>
+                                <button class="btn btn-primary" name="remove" value="${user.id}" type="submit">X</button>
+                           
                             </td>
                         </tr>
                     </c:forEach>

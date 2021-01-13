@@ -31,7 +31,7 @@ public class PositionBean {
     private EntityManager em;
 
     public void createPosition(String name, Integer numberPeopleWanted, Integer openedBy, String department, String project, String requirements, String responsibilities) {
-
+        LOG.info("createPosition");
         Position position = new Position();
 
         position.setName(name);
@@ -59,6 +59,7 @@ public class PositionBean {
     }
 
     private List<PositionDetails> copyPositionsToDetails(List<Position> positions) {
+        LOG.info("copyPositionsToDetails");
         List<PositionDetails> detailsList = new ArrayList<>();
         for (Position position : positions) {
             PositionDetails positionDetails = new PositionDetails(position.getId(), position.getName(), position.getPeopleWanted(), position.getOpenedBy(), position.getDepartment(), position.getProject(), position.getRequirements(), position.getResponsibilities(), position.isStatus());
@@ -78,6 +79,7 @@ public class PositionBean {
     }
 
     public PositionDetails findById(Integer posId) {
+        LOG.info("findPositionById");
         Position pos = em.find(Position.class, posId);
         return new PositionDetails(pos.getId(), pos.getName(), pos.getPeopleWanted(), pos.getOpenedBy(), pos.getDepartment(), pos.getProject(), pos.getRequirements(), pos.getResponsibilities(), pos.isStatus());
     }
@@ -94,13 +96,13 @@ public class PositionBean {
         pos.setStatus(status);
         em.persist(pos);
     }
-    
-    public void createApplicant(Integer userId,Integer positionId){
-    LOG.info("createApplicant");
-    Applicant app = new Applicant();
-    app.setUserId(userId);
-    app.setPositionId(positionId);
-    em.persist(app);
+
+    public void createApplicant(Integer userId, Integer positionId) {
+        LOG.info("createApplicant");
+        Applicant app = new Applicant();
+        app.setUserId(userId);
+        app.setPositionId(positionId);
+        em.persist(app);
     }
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")

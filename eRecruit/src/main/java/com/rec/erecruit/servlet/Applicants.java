@@ -9,6 +9,7 @@ import com.rec.erecruit.common.UserDetails;
 import com.rec.erecruit.ejb.ApplicantBean;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -67,11 +68,11 @@ public class Applicants extends HttpServlet {
             throws ServletException, IOException {
 
         request.setAttribute("activePage", "Applicants");
-
         Integer pId = Integer.parseInt(request.getParameter("posIdForApplicants"));
-        System.out.println(pId);
+        request.setAttribute("orice", pId);
         List<UserDetails> users_applicants = applicantBean.applicantsToUsers(applicantBean.getAllApplicants(pId));
         request.setAttribute("users_applicants", users_applicants);
+
         request.getRequestDispatcher("/WEB-INF/pages/applicants.jsp").forward(request, response);
         //response.sendRedirect(request.getContextPath() + "/Applicants");
     }
@@ -87,8 +88,20 @@ public class Applicants extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-     
-        
+
+        Integer posId = Integer.parseInt(request.getAttribute("orice").toString());
+
+        String[] applicantIdsAsString = request.getParameterValues("remove");
+        if (applicantIdsAsString != null) {
+            List<Integer> applicantIds = new ArrayList<>();
+            for (String applicantIdAsString : applicantIdsAsString) {
+                applicantIds.add(Integer.parseInt(applicantIdAsString));
+            }
+            Integer deleteById = applicantBean.findApplicantByUserIdAndPositionId(Integer.parseInt(applicantIdsAsString[0]), posId);
+            applicantBean.deleteApplicantsByIds(deleteById);
+            response.sendRedirect(request.getContextPath() + "/Applicants");
+        }
+
         //processRequest(request, response);
     }
 

@@ -37,6 +37,7 @@
                             <button class="btn btn-primary" name="pos_ids" value="${position.id}" type="submit">Delete</button>
                             
                             <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/Applicants?posIdForApplicants=${position.id}" role="button">View Applicants</a>
+                            
                         </td>
                     </c:if>
                     <c:if test="${position.status=='true'}">
