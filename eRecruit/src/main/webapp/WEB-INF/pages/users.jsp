@@ -27,7 +27,7 @@
         <c:forEach var="user" items="${users}" varStatus="Status">
           <tr>
               <td>${user.id}</td>
-              <td>${user.username}</td>
+              <td><a href="${pageContext.request.contextPath}/UserDetailsInf?id=${user.id}">${user.username}</a></td>
               <td>${user.email}</td>     
               <td>${user.phoneNumber}</td>
               <td class="options_user">
