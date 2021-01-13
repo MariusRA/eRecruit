@@ -18,7 +18,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -74,6 +73,8 @@ public class Positions extends HttpServlet {
 
         List<PositionDetails> positions = positionBean.getAllPositions();
         request.setAttribute("positions", positions);
+       // String apl=request.getAttribute("applied").toString();
+       // request.setAttribute("applied",apl);
         request.getRequestDispatcher("/WEB-INF/pages/positions.jsp").forward(request, response);
     }
 
@@ -97,15 +98,18 @@ public class Positions extends HttpServlet {
             }
             positionBean.deletePositionByIds(positionIds);
         }
-        response.sendRedirect(request.getContextPath() + "/Positions");
+       
         String[] positionId = request.getParameterValues("apply");
         if (positionId != null) {
-            HttpSession session = request.getSession();
             String usn = request.getRemoteUser();
             Integer userId = userBean.getIdByUsername(usn);
             Integer positionId_int = Integer.parseInt(request.getParameterValues("apply")[0]);
             positionBean.createApplicant(userId, positionId_int);
+          //  request.setAttribute("applied","true");
+            response.sendRedirect(request.getContextPath() + "/Positions");
         }
+        
+        
     }
 
     /**

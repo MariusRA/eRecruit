@@ -14,7 +14,7 @@
         <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddPosition" role="button">Add Position</a>
         </div>  
         <table class="table">
-            <thead class="thead-light"
+            <thead class="thead-light">
                 <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Department</th>
@@ -35,14 +35,37 @@
                         <td class="options_position">
                             <a class="btn btn-primary" href="${pageContext.request.contextPath}/EditPosition?id=${position.id}" role="button">Edit</a>
                             <button class="btn btn-primary" name="pos_ids" value="${position.id}" type="submit">Delete</button>
+                            <button class="btn btn-primary" name="send_ids" value="${position.id}" type="submit">View Applicants</button>
                         </td>
-                    </c:if>
-                    <c:if test="${position.status=='true'}">
+                    </c:if> 
+                    <c:choose>
+                    <c:when test="${position.status==true}">
+                       ${applied}
+                       
+                         
+                        
+                        <c:if test="${applied=='true'}">
+                        <td>
+                           <button class="btn btn-primary" type="button" disabled>Applied</button>
+
+                        </td>
+                        </c:if>
+                        <c:if test="${applied==null}">
                         <td>
                              <button class="btn btn-primary" name="apply" value="${position.id}"type="submit">Apply</button>
                         </td>
-                    </c:if>
-                </tr>
+                        </c:if>
+                    
+                    
+                    
+                    </c:when>
+                    <c:otherwise>
+                        <td>
+                           <button class="btn btn-primary" type="button" disabled>CLOSED</button>
+                        </td>                      
+                    </c:otherwise>    
+                    </c:choose>
+                 </tr>
                 </c:forEach>
             </tbody>
         </table>
