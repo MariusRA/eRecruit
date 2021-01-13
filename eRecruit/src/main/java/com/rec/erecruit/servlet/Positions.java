@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "Positions", urlPatterns = {"/Positions"})
 public class Positions extends HttpServlet {
-
+    
     @Inject
     private PositionBean positionBean;
     
@@ -70,7 +70,7 @@ public class Positions extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
         List<PositionDetails> positions = positionBean.getAllPositions();
         request.setAttribute("positions", positions);
        // String apl=request.getAttribute("applied").toString();
@@ -89,7 +89,7 @@ public class Positions extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
         String[] PosIdsAsString = request.getParameterValues("pos_ids");
         if (PosIdsAsString != null) {
             List<Integer> positionIds = new ArrayList<>();
@@ -97,16 +97,29 @@ public class Positions extends HttpServlet {
                 positionIds.add(Integer.parseInt(positionIdAsString));
             }
             positionBean.deletePositionByIds(positionIds);
+            response.sendRedirect(request.getContextPath() + "/Positions");
         }
-       
+
         String[] positionId = request.getParameterValues("apply");
         if (positionId != null) {
             String usn = request.getRemoteUser();
             Integer userId = userBean.getIdByUsername(usn);
             Integer positionId_int = Integer.parseInt(request.getParameterValues("apply")[0]);
             positionBean.createApplicant(userId, positionId_int);
+
           //  request.setAttribute("applied","true");
             response.sendRedirect(request.getContextPath() + "/Positions");
+
+            response.sendRedirect(request.getContextPath() + "/Positions");
+        }
+        String[] posIdsAsString = request.getParameterValues("send_ids");
+        if (posIdsAsString != null) {
+            for(String x: posIdsAsString){
+                 System.out.println(x);
+            }
+            request.getServletContext().setAttribute("id_Wich_We_NEED", Integer.parseInt( request.getParameterValues("send_ids")[0]));
+            response.sendRedirect(request.getContextPath() + "/Applicants");
+
         }
         
         

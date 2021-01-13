@@ -11,7 +11,7 @@
 <t:pageTemplate pageTitle="Positions">
     <form method="POST" action="${pageContext.request.contextPath}/Positions">
         <div class="d-flex justify-content-center">
-        <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddPosition" role="button">Add Position</a>
+            <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddPosition" role="button">Add Position</a>
         </div>  
         <table class="table">
             <thead class="thead-light">
@@ -26,46 +26,51 @@
             </thead>
             <tbody>
                 <c:forEach var="position" items="${positions}" varStatus="Status">
-                <tr>
-                    <td>${position.name}</td>   
-                    <td>${position.department}</td>
-                    <td>${position.project}</td>
-                    <td>${position.status ? "Open" : "Closed"}</td>
-                    <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
-                        <td class="options_position">
-                            <a class="btn btn-primary" href="${pageContext.request.contextPath}/EditPosition?id=${position.id}" role="button">Edit</a>
-                            <button class="btn btn-primary" name="pos_ids" value="${position.id}" type="submit">Delete</button>
-                            <button class="btn btn-primary" name="send_ids" value="${position.id}" type="submit">View Applicants</button>
-                        </td>
-                    </c:if> 
-                    <c:choose>
-                    <c:when test="${position.status==true}">
-                       ${applied}
-                       
-                         
-                        
-                        <c:if test="${applied=='true'}">
-                        <td>
-                           <button class="btn btn-primary" type="button" disabled>Applied</button>
+                    <tr>
+                        <td><a href="${pageContext.request.contextPath}/PositionDetailsInf?id=${position.id}">${position.name}</a></td>   
+                        <td>${position.department}</td>
+                        <td>${position.project}</td>
+                        <td>${position.status ? "Open" : "Closed"}</td>
+                        <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
+                            <td class="options_position">
+                                <a class="btn btn-primary" href="${pageContext.request.contextPath}/EditPosition?id=${position.id}" role="button">Edit</a>
+                                <button class="btn btn-primary" name="pos_ids" value="${position.id}" type="submit">Delete</button>
 
-                        </td>
-                        </c:if>
-                        <c:if test="${applied==null}">
-                        <td>
-                             <button class="btn btn-primary" name="apply" value="${position.id}"type="submit">Apply</button>
-                        </td>
-                        </c:if>
-                    
-                    
-                    
-                    </c:when>
-                    <c:otherwise>
-                        <td>
-                           <button class="btn btn-primary" type="button" disabled>CLOSED</button>
-                        </td>                      
-                    </c:otherwise>    
-                    </c:choose>
-                 </tr>
+                                <button class="btn btn-primary" name="send_ids" value="${position.id}" type="submit">View Applicants</button>
+
+
+                                <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/Applicants?posIdForApplicants=${position.id}" role="button">View Applicants</a>
+
+                            </td>
+                        </c:if> 
+                        <c:choose>
+                            <c:when test="${position.status==true}">
+                                ${applied}
+
+
+
+                                <c:if test="${applied=='true'}">
+                                    <td>
+                                        <button class="btn btn-primary" type="button" disabled>Applied</button>
+
+                                    </td>
+                                </c:if>
+                                <c:if test="${applied==null}">
+                                    <td>
+                                        <button class="btn btn-primary" name="apply" value="${position.id}"type="submit">Apply</button>
+                                    </td>
+                                </c:if>
+
+
+
+                            </c:when>
+                            <c:otherwise>
+                                <td>
+                                    <button class="btn btn-primary" type="button" disabled>CLOSED</button>
+                                </td>                      
+                            </c:otherwise>    
+                        </c:choose>
+                    </tr>
                 </c:forEach>
             </tbody>
         </table>
@@ -73,6 +78,6 @@
 </t:pageTemplate>
 <style>
     .options_position {
-        text-align: right;
+        text-align: center;
     }
 </style>
