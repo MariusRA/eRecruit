@@ -5,6 +5,7 @@
  */
 package com.rec.erecruit.ejb;
 
+import com.rec.erecruit.common.ApplicantDetails;
 import com.rec.erecruit.common.PositionDetails;
 import com.rec.erecruit.entity.Applicant;
 import com.rec.erecruit.entity.Position;
@@ -14,9 +15,11 @@ import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -24,9 +27,11 @@ import javax.persistence.Query;
  */
 @Stateless
 public class PositionBean {
-
+    
+    
+    
     private static final Logger LOG = Logger.getLogger(PositionBean.class.getName());
-
+    
     @PersistenceContext
     private EntityManager em;
 
@@ -45,6 +50,32 @@ public class PositionBean {
 
         em.persist(position);
 
+    }
+    
+     private List<ApplicantDetails> copyApplicantsToDetails(List<Applicant> applicants) {
+        LOG.info("copyApplicantsToDetails");
+        List<ApplicantDetails> detailsList = new ArrayList<>();
+        for (Applicant applicant : applicants) {
+            ApplicantDetails applicantDetials = new ApplicantDetails(applicant.getId(), applicant.getUserId(), applicant.getPositionId());
+            detailsList.add(applicantDetials);
+
+        }
+        return detailsList;
+    }
+    
+    public List<ApplicantDetails> getAllApplicants() {
+        LOG.info("getAllApplicants");
+        try {
+            TypedQuery<Applicant> typedQuery = em.createQuery("SELECT a FROM Applicant a ", Applicant.class);
+            List<Applicant> applicants = (List<Applicant>) typedQuery.getResultList();
+            for (Applicant applicant : applicants) {
+                System.out.println(applicant.getUserId());
+            }
+
+            return copyApplicantsToDetails(applicants);
+        } catch (Exception ex) {
+            throw new EJBException(ex);
+        }
     }
 
     public List<PositionDetails> getAllPositions() {
@@ -102,6 +133,39 @@ public class PositionBean {
     app.setPositionId(positionId);
     em.persist(app);
     }
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    
+    public List<PositionDetails>[] checkApplied(Integer user_pos){
+        LOG.info("checkApplied");
+        List<PositionDetails> positionList = getAllPositions();
+        List<ApplicantDetails> applicantList = getAllApplicants();
+        List<PositionDetails> tempList = new ArrayList();
+        for(PositionDetails pos : positionList){
+                for(ApplicantDetails app :applicantList){
+                    if(pos.getId().equals(app.getPositionId()) && app.getUserId().equals(user_pos)){                     
+                        tempList.add(pos);
+                    }
+            }
+        }
+        positionList.removeAll(tempList);
+        List<PositionDetails>[] nume=new ArrayList[2];
+        nume[0]= positionList;
+        nume[1]=tempList;
+        return nume;
+    }
+    
+   public List<PositionDetails> userPositions(List<PositionDetails> list){
+        LOG.info("userPositions");
+        List<PositionDetails> positionList = getAllPositions();
+        List<PositionDetails> invalidList = list;
+        positionList.removeAll(invalidList);      
+        return positionList;
+        }
+        
+    public void deleteApplicant(Integer userId,Integer positionId){
+        LOG.info("deleteApplicant");
+        String todelete="Delete FROM Applicant a where a.positionId="+positionId.toString()+" "+"AND a.userId="+userId.toString();
+        System.out.println("PUNE AICI UN PRINT SI VEZI");
+        TypedQuery<Applicant> typedQuery=em.createQuery(todelete,Applicant.class);  
+        typedQuery.executeUpdate();
+    }
 }

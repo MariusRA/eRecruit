@@ -70,11 +70,12 @@ public class Positions extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        List<PositionDetails> positions = positionBean.getAllPositions();
-        request.setAttribute("positions", positions);
-       // String apl=request.getAttribute("applied").toString();
-       // request.setAttribute("applied",apl);
+              
+        String usn = request.getRemoteUser();
+        Integer userId = userBean.getIdByUsername(usn);
+        List<PositionDetails>[] postemp = positionBean.checkApplied(userId);
+        request.setAttribute("notApplied", postemp[0]);
+        request.setAttribute("posApplied",postemp[1]);
         request.getRequestDispatcher("/WEB-INF/pages/positions.jsp").forward(request, response);
     }
 
@@ -105,13 +106,11 @@ public class Positions extends HttpServlet {
             String usn = request.getRemoteUser();
             Integer userId = userBean.getIdByUsername(usn);
             Integer positionId_int = Integer.parseInt(request.getParameterValues("apply")[0]);
-            positionBean.createApplicant(userId, positionId_int);
-
-          //  request.setAttribute("applied","true");
+            positionBean.createApplicant(userId, positionId_int);          
             response.sendRedirect(request.getContextPath() + "/Positions");
 
-            response.sendRedirect(request.getContextPath() + "/Positions");
         }
+        
         String[] posIdsAsString = request.getParameterValues("send_ids");
         if (posIdsAsString != null) {
             for(String x: posIdsAsString){
@@ -122,14 +121,19 @@ public class Positions extends HttpServlet {
 
         }
         
+         String[] positionId2 = request.getParameterValues("unapply");
+         if (positionId2 != null) {
+            String usn = request.getRemoteUser();
+            Integer userId = userBean.getIdByUsername(usn);
+            Integer positionId_int = Integer.parseInt(positionId2[0]);
+            positionBean.deleteApplicant(userId, positionId_int);
+            response.sendRedirect(request.getContextPath() + "/Positions");
+
+        }
+        
         
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
