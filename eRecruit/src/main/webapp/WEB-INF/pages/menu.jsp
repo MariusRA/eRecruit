@@ -19,20 +19,19 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/about.jsp">About us</a>
             </li>
 
-            <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
+            <c:if test="${pageContext.request.isUserInRole('UserCRUDRole')}">
                 <li class="nav-item ${activePage eq "Users" ? ' active' : ''}">
                     <a class="nav-link" href="${pageContext.request.contextPath}/Users">Users</a>
                 </li>
             </c:if>
-            <c:if test="${pageContext.request.isUserInRole('AdminRole')}">
+            <c:if test="${pageContext.request.isUserInRole('PositionRole')}">
                 <li class="nav-item ${activePage eq "Positions" ? ' active' : ''}">
                     <a class="nav-link" href="${pageContext.request.contextPath}/Positions">Positions</a>
                 </li>  
             </c:if>
             <li class="nav-item">
                 <a class="nav-link" href="#">Apply</a>
-            </li>
-            
+            </li>           
             <li class="nav-item">
                 <a class="nav-link" href="#">Contact</a>
             </li>
