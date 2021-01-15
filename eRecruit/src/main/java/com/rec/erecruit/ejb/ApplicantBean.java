@@ -77,4 +77,30 @@ public class ApplicantBean {
         return detailsList;
     }
 
+<<<<<<< Updated upstream
+=======
+    public void deleteApplicantsByIds(Integer applicantId) {
+        LOG.info("deleteApplicantsByIds");
+        Applicant applicant = em.find(Applicant.class, applicantId);
+        em.remove(applicant);
+
+    }
+    
+    public void deleteApplicant(Integer userId,Integer positionId){
+        LOG.info("deleteApplicant");
+        String todelete="Delete FROM Applicant a where a.positionId="+positionId.toString()+" "+"AND a.userId="+userId.toString();
+        TypedQuery<Applicant> typedQuery=em.createQuery(todelete,Applicant.class);  
+        typedQuery.executeUpdate();
+    }
+
+    public Integer findApplicantByUserIdAndPositionId(Integer userId, Integer positionId) {
+        LOG.info("findApplicantByUserIdAndPositionId");
+        String myQuery = "SELECT a FROM Applicant a WHERE a.positionId = " + positionId.toString() + "AND a.userId = " + userId.toString();
+        TypedQuery<Applicant> typedQuery = em.createQuery(myQuery, Applicant.class);
+        List<Applicant> applicants = (List<Applicant>) typedQuery.getResultList();
+
+        return applicants.get(0).getId();
+    }
+
+>>>>>>> Stashed changes
 }
