@@ -70,13 +70,9 @@ public class Applicants extends HttpServlet {
             throws ServletException, IOException {
 
         request.setAttribute("activePage", "Applicants");
-<<<<<<< Updated upstream
+        
+       
 
-        Integer pId = Integer.parseInt(request.getParameter("posIdForApplicants"));
-        System.out.println(pId);
-        List<UserDetails> users_applicants = applicantBean.applicantsToUsers(applicantBean.getAllApplicants(pId));
-        request.setAttribute("users_applicants", users_applicants);
-=======
         if(request.getParameter("posIdForApplicants")!= null || request.getParameter("id2") != null ){
         Integer pId = Integer.parseInt(request.getParameter("posIdForApplicants"));
         request.setAttribute("posIdForApplicants", pId);
@@ -85,7 +81,7 @@ public class Applicants extends HttpServlet {
         }
        
 
->>>>>>> Stashed changes
+
         request.getRequestDispatcher("/WEB-INF/pages/applicants.jsp").forward(request, response);
         //response.sendRedirect(request.getContextPath() + "/Applicants");
     }
@@ -101,10 +97,10 @@ public class Applicants extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-<<<<<<< Updated upstream
+
      
         
-=======
+
 
         Integer posId = Integer.parseInt(request.getParameter("idPos"));
 
@@ -125,7 +121,7 @@ public class Applicants extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/Applicants");
         }
 
->>>>>>> Stashed changes
+
         //processRequest(request, response);
     }
 
