@@ -70,22 +70,20 @@ public class Applicants extends HttpServlet {
             throws ServletException, IOException {
 
         request.setAttribute("activePage", "Applicants");
-<<<<<<< Updated upstream
 
         Integer pId = Integer.parseInt(request.getParameter("posIdForApplicants"));
-        System.out.println(pId);
         List<UserDetails> users_applicants = applicantBean.applicantsToUsers(applicantBean.getAllApplicants(pId));
         request.setAttribute("users_applicants", users_applicants);
-=======
-        if(request.getParameter("posIdForApplicants")!= null || request.getParameter("id2") != null ){
-        Integer pId = Integer.parseInt(request.getParameter("posIdForApplicants"));
+
+        
+
+      
         request.setAttribute("posIdForApplicants", pId);
-        List<UserDetails> users_applicants = applicantBean.applicantsToUsers(applicantBean.getAllApplicants(pId));
         request.setAttribute("users_applicants", users_applicants);
-        }
+        
        
 
->>>>>>> Stashed changes
+
         request.getRequestDispatcher("/WEB-INF/pages/applicants.jsp").forward(request, response);
         //response.sendRedirect(request.getContextPath() + "/Applicants");
     }
@@ -101,14 +99,15 @@ public class Applicants extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-<<<<<<< Updated upstream
      
-        
-=======
 
         Integer posId = Integer.parseInt(request.getParameter("idPos"));
 
         String[] applicantIdsAsString = request.getParameterValues("remove");
+        System.out.println("############################################################");
+        for(String x:applicantIdsAsString){
+            System.out.println(x);
+        }
         if (applicantIdsAsString != null) {
 //            List<Integer> applicantIds = new ArrayList<>();
 //            for (String applicantIdAsString : applicantIdsAsString) {
@@ -117,15 +116,15 @@ public class Applicants extends HttpServlet {
 //            Integer deleteById = applicantBean.findApplicantByUserIdAndPositionId(Integer.parseInt(applicantIdsAsString[0]), posId);
 //            applicantBean.deleteApplicantsByIds(deleteById);
 
-            String usn = request.getRemoteUser();
+            String usn = applicantIdsAsString[0];
             Integer userId = userBean.getIdByUsername(usn);
             applicantBean.deleteApplicant(userId, posId);
-            request.setAttribute("id2", posId);
             
-            response.sendRedirect(request.getContextPath() + "/Applicants");
+            
+            response.sendRedirect(request.getContextPath() + "/Applicants?posIdForApplicants=" + posId);
         }
 
->>>>>>> Stashed changes
+
         //processRequest(request, response);
     }
 
