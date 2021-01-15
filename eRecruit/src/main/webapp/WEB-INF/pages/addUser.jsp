@@ -31,38 +31,7 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="phone">Phone Number</label>
-                <select name="country" id="country" onchange="selectCountry()">
-                    <option value="-1" selected>[choose your country prefix]</option>
-                    <option value="1">RO</option>
-                    <option value="2">DE</option>
-                </select>
-                <input type="text" class="form-control hidden" id="ro_phone" name="phone" pattern="" placeholder="" value="+04" required>
-                <input type="text" class="form-control hidden" id="de_phone" name="phone" pattern="" placeholder="" value="+49" required>
-                <div class="invalid-feedback">
-                    Phone Number is required.
-                </div>
-            </div>
-        </div>
-        
-        <script>
-            function selectCountry() {
-                var country_value = document.getElementById("country").value;
-                var ro = document.getElementById("ro_phone"); 
-                var de = document.getElementById("de_phone"); 
-                
-                if(country_value == 1) {
-                    //ro.addClass('hidden');
-                    ro.classList.remove("hidden");
-                    de.classList.add("hidden");
-                } else if (country_value == 2) {
-                    de.classList.remove('hidden');
-                    ro.classList.add("hidden");
-                } 
-            }
-        </script>
+
 
         <div class="row">
             <div class="col-md-6 mb-3">
@@ -116,7 +85,7 @@
 
         <select class="form-select" name="roles" aria-label="Default select example">
             <option selected>Choose a Role </option>
-            <option value="GENERAL DIRECTOR">General Director</option>
+            <option value="DIRECTOR_GENERAL">General Director</option>
             <option value="DEPARTMENT DIRECTOR">Department Director</option>
             <option value="HR DIRECTOR">HR Director</option>
             <option value="ADMINISTRATOR">Administrator</option>
@@ -137,11 +106,7 @@
                 //var phone_inputs = document.getElementById("");
                 // Loop over them and prevent submission
                 var validation = Array.prototype.filter.call(forms, function (form) {
-                    
-                    
-                    
-                    
-                    
+   
                     form.addEventListener('submit', function (event) {
                         if (form.checkValidity() === false) {
                             event.preventDefault();
@@ -151,7 +116,7 @@
                     }, false);
                 });
             }, false);
-        })();
+        });();
     </script>
     <style>
         .hidden {
