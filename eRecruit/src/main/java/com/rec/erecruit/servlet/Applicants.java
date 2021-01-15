@@ -7,6 +7,7 @@ package com.rec.erecruit.servlet;
 
 import com.rec.erecruit.common.UserDetails;
 import com.rec.erecruit.ejb.ApplicantBean;
+import com.rec.erecruit.ejb.UserBean;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -26,6 +27,8 @@ public class Applicants extends HttpServlet {
 
     @Inject
     private ApplicantBean applicantBean;
+    
+    @Inject UserBean userBean;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -67,11 +70,22 @@ public class Applicants extends HttpServlet {
             throws ServletException, IOException {
 
         request.setAttribute("activePage", "Applicants");
+<<<<<<< Updated upstream
 
         Integer pId = Integer.parseInt(request.getParameter("posIdForApplicants"));
         System.out.println(pId);
         List<UserDetails> users_applicants = applicantBean.applicantsToUsers(applicantBean.getAllApplicants(pId));
         request.setAttribute("users_applicants", users_applicants);
+=======
+        if(request.getParameter("posIdForApplicants")!= null || request.getParameter("id2") != null ){
+        Integer pId = Integer.parseInt(request.getParameter("posIdForApplicants"));
+        request.setAttribute("posIdForApplicants", pId);
+        List<UserDetails> users_applicants = applicantBean.applicantsToUsers(applicantBean.getAllApplicants(pId));
+        request.setAttribute("users_applicants", users_applicants);
+        }
+       
+
+>>>>>>> Stashed changes
         request.getRequestDispatcher("/WEB-INF/pages/applicants.jsp").forward(request, response);
         //response.sendRedirect(request.getContextPath() + "/Applicants");
     }
@@ -87,8 +101,31 @@ public class Applicants extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< Updated upstream
      
         
+=======
+
+        Integer posId = Integer.parseInt(request.getParameter("idPos"));
+
+        String[] applicantIdsAsString = request.getParameterValues("remove");
+        if (applicantIdsAsString != null) {
+//            List<Integer> applicantIds = new ArrayList<>();
+//            for (String applicantIdAsString : applicantIdsAsString) {
+//                applicantIds.add(Integer.parseInt(applicantIdAsString));
+//            }
+//            Integer deleteById = applicantBean.findApplicantByUserIdAndPositionId(Integer.parseInt(applicantIdsAsString[0]), posId);
+//            applicantBean.deleteApplicantsByIds(deleteById);
+
+            String usn = request.getRemoteUser();
+            Integer userId = userBean.getIdByUsername(usn);
+            applicantBean.deleteApplicant(userId, posId);
+            request.setAttribute("id2", posId);
+            
+            response.sendRedirect(request.getContextPath() + "/Applicants");
+        }
+
+>>>>>>> Stashed changes
         //processRequest(request, response);
     }
 
