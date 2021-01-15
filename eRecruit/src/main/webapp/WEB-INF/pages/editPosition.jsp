@@ -77,13 +77,13 @@
                 </div>
             </div>
         </div>
-                
-        <select class="form-select" name="status" aria-label="Default select example">
-            <option selected>Position Status</option>
-            <option value=true>OPEN</option>
-            <option value=false>CLOSED</option>
-        </select>
-
+        <c:if test="${pageContext.request.isUserInRole('PositionDeleteRole')}">        
+            <select class="form-select" name="status" aria-label="Default select example">
+                <option selected>Position Status</option>
+                <option value=true>OPEN</option>
+                <option value=false>CLOSED</option>
+            </select>
+        </c:if>
         <input type="hidden" name="pos_id" value="${position.id}"/>
         <button class="btn btn-primary btn-lg btn-block" type="submit">Save</button>
     </form>

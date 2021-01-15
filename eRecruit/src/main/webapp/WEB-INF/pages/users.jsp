@@ -11,32 +11,40 @@
 <t:pageTemplate pageTitle="Users">
     <form method="POST" action="${pageContext.request.contextPath}/Users">
         <div class="d-flex justify-content-center" id="add_user">
-        <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddUser" role="button">Add User</a>
+            <c:if test="${pageContext.request.isUserInRole('UserCRUDRole')}">
+                <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddUser" role="button">Add User</a>
+            </c:if>
         </div>  
         <table class="table table-hover table-dark">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Username</th>
-                <th scope="col">Email</th>
-                <th scope="col">Phone</th> 
-                <th scope="col1" class="options_user">Options</th>
-            </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="user" items="${users}" varStatus="Status">
-          <tr>
-              <td>${user.id}</td>
-              <td><a href="${pageContext.request.contextPath}/UserDetailsInf?id=${user.id}">${user.username}</a></td>
-              <td>${user.email}</td>     
-              <td>${user.phoneNumber}</td>
-              <td class="options_user">
-                  <a class="btn btn-primary" href="${pageContext.request.contextPath}/EditUser?id=${user.id}" role="button">Edit</a>
-                 <button class="btn btn-primary" name="user_ids" value="${user.id}" type="submit">Delete</button>
-              </td>
-          </tr>
-        </c:forEach>
-          </tbody>
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th> 
+                    <th scope="col1" class="options_user">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="user" items="${users}" varStatus="Status">
+                    <tr>
+                        <td>${user.id}</td>
+                        <td>
+                            <c:if test="${pageContext.request.isUserInRole('UserCRUDRole')}">
+                                <a href="${pageContext.request.contextPath}/UserDetailsInf?id=${user.id}">${user.username}</a>
+                            </c:if>
+                        </td>
+                        <td>${user.email}</td>     
+                        <td>${user.phoneNumber}</td>
+                        <td class="options_user">
+                            <c:if test="${pageContext.request.isUserInRole('UserCRUDRole')}">
+                                <a class="btn btn-primary" href="${pageContext.request.contextPath}/EditUser?id=${user.id}" role="button">Edit</a>                                               
+                                <button class="btn btn-primary" name="user_ids" value="${user.id}" type="submit">Delete</button>
+                            </c:if>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
         </table>
     </form>
 </t:pageTemplate>

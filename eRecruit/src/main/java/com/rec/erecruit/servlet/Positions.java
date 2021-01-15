@@ -12,8 +12,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.security.DeclareRoles;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.HttpConstraint;
+import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +26,14 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Andrei Paul
  */
+@DeclareRoles({"UserCRUDRole","PositionCRUDRole","PositionDeleteRole",
+    "CandidateCRUDRole","CommentsCRUDRole","ViewerRole","PositionRole"})
+@ServletSecurity(
+        value = @HttpConstraint(
+                rolesAllowed = {"PositionCRUDRole","PositionRole","ViewerRole"}
+        )
+)
+
 @WebServlet(name = "Positions", urlPatterns = {"/Positions"})
 public class Positions extends HttpServlet {
     

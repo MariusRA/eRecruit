@@ -8,8 +8,51 @@
         </property>
     </jsp-config>
     <security-role-mapping>
-        <role-name>AdminRole</role-name>
+        <role-name>UserCRUDRole</role-name>
         <group-name>ADMINISTRATOR</group-name>
         <group-name>DIRECTOR_GENERAL</group-name>
     </security-role-mapping>
+    
+    <security-role-mapping>
+        <role-name>PositionCRUDRole</role-name>      
+        <group-name>DIRECTOR_GENERAL</group-name>
+        <group-name>DIRECTOR_DEPARTAMENT</group-name>
+        <group-name>DIRECTOR_HR</group-name>
+        <group-name>RECRUITER</group-name>
+    </security-role-mapping>
+    
+    <security-role-mapping>
+        <role-name>PositionDeleteRole</role-name>      
+        <group-name>DIRECTOR_GENERAL</group-name>
+    </security-role-mapping>
+    
+    <security-role-mapping>
+        <role-name>CandidateCRUDRole</role-name>      
+        <group-name>DIRECTOR_GENERAL</group-name>
+        <group-name>RECRUITER</group-name>
+    </security-role-mapping>
+    
+    <security-role-mapping>
+        <role-name>CommentsCRUDRole</role-name>      
+        <group-name>DIRECTOR_GENERAL</group-name>
+        <group-name>DIRECTOR_DEPARTAMENT</group-name>
+        <group-name>DIRECTOR_HR</group-name>
+        <group-name>RECRUITER</group-name>
+    </security-role-mapping>
+    
+    <security-role-mapping>
+        <role-name>ViewerRole</role-name>
+        <group-name>VIEWER</group-name>    
+    </security-role-mapping>
+    
+    <security-role-mapping>
+        <role-name>PositionRole</role-name>
+        <group-name>DIRECTOR_GENERAL</group-name>
+        <group-name>DIRECTOR_DEPARTAMENT</group-name>
+        <group-name>DIRECTOR_HR</group-name>
+        <group-name>RECRUITER</group-name>
+        <group-name>VIEWER</group-name>    
+    </security-role-mapping>
+    
+    
 </glassfish-web-app>

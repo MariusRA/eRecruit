@@ -8,8 +8,10 @@ package com.rec.erecruit.ejb;
 import com.rec.erecruit.common.ApplicantDetails;
 import com.rec.erecruit.common.UserDetails;
 import com.rec.erecruit.entity.Applicant;
+import com.rec.erecruit.entity.Position;
 import com.rec.erecruit.entity.User;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.EJBException;
@@ -75,6 +77,22 @@ public class ApplicantBean {
 
         }
         return detailsList;
+    }
+
+    public void deleteApplicantsByIds(Integer applicantId) {
+        LOG.info("deleteApplicantsByIds");
+        Applicant applicant = em.find(Applicant.class, applicantId);
+        em.remove(applicant);
+
+    }
+
+    public Integer findApplicantByUserIdAndPositionId(Integer userId, Integer positionId) {
+        LOG.info("findApplicantByUserIdAndPositionId");
+        String myQuery = "SELECT a FROM Applicant a WHERE a.positionId = " + positionId.toString() + "AND a.userId = " + userId.toString();
+        TypedQuery<Applicant> typedQuery = em.createQuery(myQuery, Applicant.class);
+        List<Applicant> applicants = (List<Applicant>) typedQuery.getResultList();
+
+        return applicants.get(0).getId();
     }
 
 }
