@@ -30,12 +30,9 @@
                     <a class="nav-link" href="${pageContext.request.contextPath}/Positions">Positions</a>
                 </li>  
             </c:if>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Apply</a>
-            </li>           
-            <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
-            </li>
+            <li class="nav-item ${activePage eq "UserSettings" ? ' active' : ''}">
+                <a class="nav-link" href="${pageContext.request.contextPath}/UsersSettings">Settings</a>
+            </li>        
         </ul>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
