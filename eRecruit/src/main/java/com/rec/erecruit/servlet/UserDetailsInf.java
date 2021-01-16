@@ -84,15 +84,12 @@ public class UserDetailsInf extends HttpServlet {
         request.setAttribute("activePage", "UserDetailsInf");
         List<UserDetails> usersDetailsInf = userBean.getAllUsers();
         request.setAttribute("userDetailsInf", usersDetailsInf);
-        
-        // de aici fac eu
-        
+              
         int userId = Integer.parseInt(request.getParameter("id"));
         UserDetails userDetailsIn = userBean.findById(userId);
         request.setAttribute("userDetailsInf", userDetailsIn);
         List<CommentDetails> commDetails = commBean.getAllComments(userId);
-        request.setAttribute("usercomments", commDetails);
-        
+        request.setAttribute("usercomments", commDetails);        
 
         request.getRequestDispatcher("/WEB-INF/pages/userDetailsInf.jsp").forward(request, response);
     }
@@ -109,7 +106,7 @@ public class UserDetailsInf extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String[] postcomm = request.getParameterValues("postcomm");
+        String[] postcom = request.getParameterValues("postcom");
         // comm content
         String currentComm = request.getParameter("commcontent");
         //created by
@@ -118,11 +115,20 @@ public class UserDetailsInf extends HttpServlet {
         String[] ownedByUsn = request.getParameterValues("ownerUsn");
         Integer ownedBy = userBean.getIdByUsername(ownedByUsn[0]);  
 
-        if (currentComm != null) {
+        if (postcom != null) {
 
             commBean.createComment(ownedBy, currentComm, createdBy);
 
         }
+        
+        String[] idcomment = request.getParameterValues("deletecom");
+        if ( idcomment != null) {           
+            int id=  Integer.parseInt(idcomment[0]);          
+            commBean.deleteComment(id);
+            
+            
+        }
+        
         response.sendRedirect(request.getContextPath() + "/UserDetailsInf?id=" + ownedBy);
 
     }

@@ -5,9 +5,12 @@
  */
 package com.rec.erecruit.servlet;
 
+import com.rec.erecruit.common.CommentDetails;
 import com.rec.erecruit.common.PositionDetails;
 import com.rec.erecruit.common.UserDetails;
+import com.rec.erecruit.ejb.CommentBean;
 import com.rec.erecruit.ejb.PositionBean;
+import com.rec.erecruit.ejb.UserBean;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -25,9 +28,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author eli10
  */
-
-@DeclareRoles({"UserCRUDRole","PositionCRUDRole","PositionDeleteRole",
-    "CandidateCRUDRole","CommentsCRUDRole","ViewerRole","PositionRole"})
+@DeclareRoles({"UserCRUDRole", "PositionCRUDRole", "PositionDeleteRole",
+    "CandidateCRUDRole", "CommentsCRUDRole", "ViewerRole", "PositionRole"})
 @ServletSecurity(
         value = @HttpConstraint(
                 rolesAllowed = {"PositionCRUDRole"}
@@ -38,6 +40,12 @@ public class PositionDetailsInf extends HttpServlet {
 
     @Inject
     private PositionBean positionBean;
+
+    @Inject
+    private UserBean userBean;
+
+    @Inject
+    private CommentBean commBean;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -83,8 +91,14 @@ public class PositionDetailsInf extends HttpServlet {
         int positionId = Integer.parseInt(request.getParameter("id"));
         PositionDetails positionDetailsIn = positionBean.findById(positionId);
         request.setAttribute("positionDetailsInf", positionDetailsIn);
-        request.getRequestDispatcher("/WEB-INF/pages/positionDetailsInf.jsp").forward(request, response);
 
+        int intposId = Integer.parseInt(request.getParameter("id"));
+        PositionDetails posDetailsIn = positionBean.findById(intposId);
+        request.setAttribute("positionDetailsInf", posDetailsIn);
+        List<CommentDetails> commDetails = commBean.getAllComments(intposId);
+        request.setAttribute("positioncomments", commDetails);
+
+        request.getRequestDispatcher("/WEB-INF/pages/positionDetailsInf.jsp").forward(request, response);
     }
 
     /**
@@ -98,7 +112,27 @@ public class PositionDetailsInf extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect(request.getContextPath() + "/PositionDetailsInf");
+
+        String[] postcomm = request.getParameterValues("postcom");
+        String currentComm = request.getParameter("commcontent");
+        Integer createdBy = userBean.getIdByUsername(request.getRemoteUser());
+        String[] ownedByUsn = request.getParameterValues("ownerUsn");
+        int ownedBy = Integer.parseInt(ownedByUsn[0]);
+        if (postcomm != null) {
+
+            commBean.createComment(ownedBy, currentComm, createdBy);
+
+        }      
+
+        String[] idcomment = request.getParameterValues("deletecom");
+        if (idcomment != null) {
+            int id = Integer.parseInt(idcomment[0]);
+            commBean.deleteComment(id);
+
+        }
+
+        response.sendRedirect(request.getContextPath() + "/PositionDetailsInf?id=" + ownedBy);
+
     }
 
     /**

@@ -63,6 +63,7 @@
                 <td>${comm.content}</td>
                 <td>${comm.username}</td>
                 <td>${comm.date}</td>
+                <td><button class="btn btn-primary" name="deletecom" value="${comm.id}" type="submit">Delete Comment</button></td>
             </tr>    
             
         </c:forEach>

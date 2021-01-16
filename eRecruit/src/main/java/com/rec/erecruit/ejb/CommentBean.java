@@ -79,6 +79,12 @@ public class CommentBean {
         }
         return detailsList;
     }
+    
+     public void deleteComment(Integer id){
+        LOG.info("deleteComment");      
+        Comment iddelete = em.find(Comment.class, id);
+        em.remove(iddelete);
+    }
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 }
