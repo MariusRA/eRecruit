@@ -166,7 +166,6 @@ public class PositionBean {
     public void deleteApplicant(Integer userId,Integer positionId){
         LOG.info("deleteApplicant");
         String todelete="Delete FROM Applicant a where a.positionId="+positionId.toString()+" "+"AND a.userId="+userId.toString();
-        System.out.println("PUNE AICI UN PRINT SI VEZI");
         TypedQuery<Applicant> typedQuery=em.createQuery(todelete,Applicant.class);  
         typedQuery.executeUpdate();
     }
