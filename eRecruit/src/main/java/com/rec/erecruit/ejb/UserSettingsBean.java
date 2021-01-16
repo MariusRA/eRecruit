@@ -74,5 +74,11 @@ public class UserSettingsBean {
         
         
     }
+    
+    public UserSettings findById(Integer userId) {
+        LOG.info("findUserById");
+        UserSettings user = em.find(UserSettings.class, userId);
+        return user;
+    }
 
 }
