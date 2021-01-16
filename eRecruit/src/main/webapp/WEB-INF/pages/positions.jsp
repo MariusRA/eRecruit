@@ -46,6 +46,7 @@
                                 <td>${position.department}</td>
                                 <td>${position.project}</td>
                                 <td>${position.status ? "Open" : "Closed"}</td>
+                                 <td class="options_position">
                                     <c:choose>
                                         <c:when test="${position.status==true}"> 
                                             <c:if test="${pageContext.request.isUserInRole('ViewerRole')}">
@@ -56,6 +57,7 @@
                                             <td><button class="btn btn-primary" type="button" disabled>CLOSED</button></td>                                                   
                                         </c:otherwise>    
                                     </c:choose>  
+                                 </td>
                             </tr>
                         </c:forEach>
                     </tbody>
