@@ -31,6 +31,7 @@ public class UserBean {
     private EntityManager em;
 
     public boolean checkDuplicatesDB(String Username) {
+        LOG.info("checkDuplicateUsersDB");
         boolean flag = false;
 
         List<UserDetails> users = getAllUsers();
@@ -44,6 +45,7 @@ public class UserBean {
     }
 
     public void createUser(String FirstName, String LastName, String PhoneNo, String MobileNo, String Mail, String JobTitle, String Description, String PasswordSha256, String Roles) {
+        LOG.info("createUser");
         User user = new User();
 
         int length = 1;
@@ -91,6 +93,7 @@ public class UserBean {
     }
 
     private List<UserDetails> copyUsersToDetails(List<User> users) {
+        LOG.info("copyUsersToDetails");
         List<UserDetails> detailsList = new ArrayList<>();
         for (User user : users) {
             UserDetails userDetials = new UserDetails(user.getId(), user.getLastName(), user.getFirstName(), user.getPhoneNumber(), user.getMobilePhoneNumber(), user.getEmail(), user.getJobTitle(), user.getDescription(), user.getUsername(), user.getPassword(), user.getRoles());
@@ -110,6 +113,7 @@ public class UserBean {
     }
 
     public UserDetails findById(Integer userId) {
+        LOG.info("findUserById");
         User user = em.find(User.class, userId);
         return new UserDetails(user.getId(), user.getLastName(), user.getFirstName(), user.getPhoneNumber(), user.getMobilePhoneNumber(), user.getEmail(), user.getJobTitle(), user.getDescription(), user.getUsername(), user.getPassword(), user.getRoles());
     }
@@ -135,11 +139,10 @@ public class UserBean {
         LOG.info("getIdByUsername");
         try {
             //Query query = em.createQuery("SELECT u FROM User u WHERE u.username LIKE ?1").setParameter(1, username);
-            
-            TypedQuery<User> typedQuery=em.createQuery("SELECT u FROM User u WHERE u.username = :orice", User.class).setParameter("orice", username);   
-            List<User> user =  typedQuery.getResultList();
-            
-            
+
+            TypedQuery<User> typedQuery = em.createQuery("SELECT u FROM User u WHERE u.username = :orice", User.class).setParameter("orice", username);
+            List<User> user = typedQuery.getResultList();
+
             return user.get(0).getId();
         } catch (Exception ex) {
             throw new EJBException(ex);

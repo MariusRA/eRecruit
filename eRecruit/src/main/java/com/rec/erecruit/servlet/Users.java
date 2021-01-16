@@ -25,10 +25,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author popa_
  */
-@DeclareRoles({"AdminRole"})
+@DeclareRoles({"UserCRUDRole","PositionCRUDRole","PositionDeleteRole",
+    "CandidateCRUDRole","CommentsCRUDRole","ViewerRole","PositionRole"})
 @ServletSecurity(
         value = @HttpConstraint(
-                rolesAllowed = {"AdminRole"}
+                rolesAllowed = {"UserCRUDRole"}
         )
 )
 @WebServlet(name = "Users", urlPatterns = {"/Users"})

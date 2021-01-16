@@ -7,6 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<style><%@include file="/general.css"%></style>
+<style><%@include file="/login.css"%></style>
 <!DOCTYPE html>
 <t:pageTemplate pageTitle="Login"> 
  
@@ -23,41 +25,3 @@
 
 </div>
 </t:pageTemplate>
-
-<style>
-    .login-container {
-        background: url("${pageContext.request.contextPath}/carousel/2522-login.jpg");
-        width: 100%;
-        background-size: cover;
-        height: 600px;
-    }
-    .custom-radio {
-        width: 160px;
-        float: left;
-        }
-    .custom-control-input:disabled~.custom-control-label {
-        color: #ffffff;
-    }
-    .form-signin button {
-        background-color: hsl(282, 24%, 33%)
-    }
-    .form-signin {
-        width: 700px;
-        margin: 0 auto;
-        padding-top: 10px;
-        z-index: 999;
-        background-color: hsla(282, 24%, 33%, 0.7); 
-        padding: 20px 10px 15px 10px;
-        
-    }
-    .form-control {
-        border :1px solid #880027;
-    }
-    .form-signin input, 
-    .custom-control {
-        margin-bottom: 12px;
-    }
-    .form-signin h1 {
-        text-align: center;
-    }
-</style>

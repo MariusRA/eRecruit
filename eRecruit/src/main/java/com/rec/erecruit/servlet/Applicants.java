@@ -70,15 +70,17 @@ public class Applicants extends HttpServlet {
             throws ServletException, IOException {
 
         request.setAttribute("activePage", "Applicants");
-        
-       
 
-        if(request.getParameter("posIdForApplicants")!= null || request.getParameter("id2") != null ){
         Integer pId = Integer.parseInt(request.getParameter("posIdForApplicants"));
-        request.setAttribute("posIdForApplicants", pId);
         List<UserDetails> users_applicants = applicantBean.applicantsToUsers(applicantBean.getAllApplicants(pId));
         request.setAttribute("users_applicants", users_applicants);
-        }
+
+        
+
+      
+        request.setAttribute("posIdForApplicants", pId);
+        request.setAttribute("users_applicants", users_applicants);
+        
        
 
 
@@ -97,10 +99,7 @@ public class Applicants extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
      
-        
-
 
         Integer posId = Integer.parseInt(request.getParameter("idPos"));
 
@@ -112,13 +111,13 @@ public class Applicants extends HttpServlet {
 //            }
 //            Integer deleteById = applicantBean.findApplicantByUserIdAndPositionId(Integer.parseInt(applicantIdsAsString[0]), posId);
 //            applicantBean.deleteApplicantsByIds(deleteById);
-
-            String usn = request.getRemoteUser();
-            Integer userId = userBean.getIdByUsername(usn);
+            String usn = applicantIdsAsString[0];
+       
+            Integer userId = Integer.parseInt(usn);
+           
             applicantBean.deleteApplicant(userId, posId);
-            request.setAttribute("id2", posId);
             
-            response.sendRedirect(request.getContextPath() + "/Applicants");
+            response.sendRedirect(request.getContextPath() + "/Applicants?posIdForApplicants=" + posId);
         }
 
 

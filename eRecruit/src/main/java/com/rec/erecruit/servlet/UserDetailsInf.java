@@ -5,14 +5,18 @@
  */
 package com.rec.erecruit.servlet;
 
-import com.rec.erecruit.common.PositionDetails;
+import com.rec.erecruit.common.CommentDetails;
 import com.rec.erecruit.common.UserDetails;
+import com.rec.erecruit.ejb.CommentBean;
 import com.rec.erecruit.ejb.UserBean;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.annotation.security.DeclareRoles;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.HttpConstraint;
+import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,10 +26,22 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author eli10
  */
+@DeclareRoles({"UserCRUDRole","PositionCRUDRole","PositionDeleteRole",
+    "CandidateCRUDRole","CommentsCRUDRole","ViewerRole","PositionRole"})
+@ServletSecurity(
+        value = @HttpConstraint(
+                rolesAllowed = {"UserCRUDRole"}
+        )
+)
+
 @WebServlet(name = "UserDetailsInf", urlPatterns = {"/UserDetailsInf"})
 public class UserDetailsInf extends HttpServlet {
-     @Inject
+
+    @Inject
     private UserBean userBean;
+
+    @Inject
+    private CommentBean commBean;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,7 +60,7 @@ public class UserDetailsInf extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UserDetailsInf</title>");            
+            out.println("<title>Servlet UserDetailsInf</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet UserDetailsInf at " + request.getContextPath() + "</h1>");
@@ -65,12 +81,19 @@ public class UserDetailsInf extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         request.setAttribute("activePage", "UserDetailsInf");
+        request.setAttribute("activePage", "UserDetailsInf");
         List<UserDetails> usersDetailsInf = userBean.getAllUsers();
         request.setAttribute("userDetailsInf", usersDetailsInf);
+        
+        // de aici fac eu
+        
         int userId = Integer.parseInt(request.getParameter("id"));
         UserDetails userDetailsIn = userBean.findById(userId);
         request.setAttribute("userDetailsInf", userDetailsIn);
+        List<CommentDetails> commDetails = commBean.getAllComments(userId);
+        request.setAttribute("usercomments", commDetails);
+        
+
         request.getRequestDispatcher("/WEB-INF/pages/userDetailsInf.jsp").forward(request, response);
     }
 
@@ -85,7 +108,23 @@ public class UserDetailsInf extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect(request.getContextPath() + "/UserDetailsInf");
+
+        String[] postcomm = request.getParameterValues("postcomm");
+        // comm content
+        String currentComm = request.getParameter("commcontent");
+        //created by
+        Integer createdBy = userBean.getIdByUsername(request.getRemoteUser());
+        //owned by
+        String[] ownedByUsn = request.getParameterValues("ownerUsn");
+        Integer ownedBy = userBean.getIdByUsername(ownedByUsn[0]);  
+
+        if (currentComm != null) {
+
+            commBean.createComment(ownedBy, currentComm, createdBy);
+
+        }
+        response.sendRedirect(request.getContextPath() + "/UserDetailsInf?id=" + ownedBy);
+
     }
 
     /**

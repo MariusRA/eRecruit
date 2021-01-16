@@ -77,8 +77,6 @@ public class ApplicantBean {
         return detailsList;
     }
 
-
-
     public void deleteApplicantsByIds(Integer applicantId) {
         LOG.info("deleteApplicantsByIds");
         Applicant applicant = em.find(Applicant.class, applicantId);
