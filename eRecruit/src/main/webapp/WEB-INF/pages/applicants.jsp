@@ -7,7 +7,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<style><%@include file="/general.css"%></style>
 
 <t:pageTemplate pageTitle="Applicants">
     <form method="POST" action="${pageContext.request.contextPath}/Applicants">
@@ -26,9 +25,13 @@
                             <td>${user.username}</td>
                             <td>${user.email}</td>     
                             <td class="options_applicants">            
+                                
+
                                 <a class="btn btn-primary" href="${pageContext.request.contextPath}/Candidates?applicantAccepted=${user.id}"role="button">✓</a>
                                 <button class="btn btn-primary" name="remove" value="${user.id}" type="submit">X</button>
-                           
+                                <input type="hidden" id="idPos" name="idPos" placeholder="${posIdForApplicants}" value="${posIdForApplicants}">
+                                <input type="hidden" id="id2" name="id2" placeholder="${id2}" value="${id2}">
+
                             </td>
                         </tr>
                     </c:forEach>
