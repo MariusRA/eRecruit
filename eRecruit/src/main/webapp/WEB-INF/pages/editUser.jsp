@@ -74,9 +74,9 @@
 
             <select class="form-select" name="roles" aria-label="Default select example">
                 <option selected>Choose a Role </option>
-                <option value="GENERAL DIRECTOR">General Director</option>
-                <option value="DEPARTMENT DIRECTOR">Department Director</option>
-                <option value="HR DIRECTOR">HR Director</option>
+                <option value="DIRECTOR_GENERAL">General Director</option>
+                <option value="DIRECTOR_DEPARTAMENT">Department Director</option>
+                <option value="DIRECTOR_HR">HR Director</option>
                 <option value="ADMINISTRATOR">Administrator</option>
                 <option value="RECRUITER">Recruiter</option>
                 <option value="VIEWER">Viewer</option>
