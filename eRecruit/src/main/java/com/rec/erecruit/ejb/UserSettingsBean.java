@@ -5,6 +5,8 @@
  */
 package com.rec.erecruit.ejb;
 
+import com.rec.erecruit.common.UserDetails;
+import com.rec.erecruit.entity.User;
 import com.rec.erecruit.entity.UserSettings;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,5 +40,13 @@ public class UserSettingsBean {
             throw new EJBException(ex);
         }
     }
+    
+    public UserSettings findById(Integer userId) {
+        LOG.info("findUserById");
+        UserSettings user = em.find(UserSettings.class, userId);
+        return user;
+    }
+    
+    
 
 }

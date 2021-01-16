@@ -73,6 +73,7 @@ public class EditPosition extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String name = request.getParameter("name");
         int id = Integer.parseInt(request.getParameter("pos_id"));
         int peopleWanted = Integer.parseInt(request.getParameter("number"));

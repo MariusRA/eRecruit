@@ -32,6 +32,10 @@ public class UserSettings implements Serializable {
     private String comments;
     private Integer userId;
 
+    public UserSettings(Integer id, String address, String comments, String interviewDate, String linkCV, Boolean relocation, Integer userId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public Integer getUserId() {
         return userId;
     }
