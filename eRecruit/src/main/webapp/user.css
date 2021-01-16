@@ -1,0 +1,140 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 16, 2021, 6:01:54 AM
+    Author     : Denisa
+*/
+
+#pos_holder .form-select {
+    width: 200px !important;
+}
+body {
+    padding: 0;
+    background-color: hsl(351, 16%, 93%) !important;
+    padding-bottom: 0px !important;
+    position: relative;
+    color: #212121;
+    height: auto;
+    padding-bottom: 100px !important;
+}
+#pos_holder .field label {
+    color: hsl(350, 50%, 42%) !important;
+}
+#pos_holder .form-select {
+    background-color: hsl(351, 28%, 77%) !important;
+}
+#pos_holder .btn-primary {
+    background-color: hsl(0, 13%, 55%) !important;
+    border: none !important;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+.holder_btn {
+    width: 100%;
+    margin: 0 auto;
+    float: left;
+    text-align: center;
+}
+.button_add {
+    width: 200px;
+    height: 99px;
+    background-color: hsl(351, 16%, 93%) !important;
+    border-color:hsl(351, 16%, 93%) !important;
+    position: relative;
+    background-color: transparent;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+.button_add .add_btn {
+    float: left;
+    width: 100%;
+    height: 100%;
+    /* margin: auto 0; */
+    font-size: 15px;
+    color: #4D3B2C;
+    font-weight: 500;
+}
+.button_add .add_btn .icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+    display: block;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background: url('${pageContext.request.contextPath}/carousel/white_icon.svg') no-repeat center center hsla(353, 80%, 45%, 27%);
+    background-size: 14px auto;
+}
+.button_add .add_btn .text {
+    position: relative;
+    font-size: 20px;
+    top: -52px;
+    
+}
+.addUser_table th {
+    background-color: hsl(38, 33%, 99%) !important;
+}
+.addUser_table td,
+.addUser_table th {
+    vertical-align: inherit !important;
+}
+.addUser_table td {
+    background-color: hsl(357, 33%, 83%) !important;
+    padding: 0px 12px !important;
+}
+.addUser_table td a,
+.addUser_table td a:visited,
+.addUser_table td a:active{
+    color: hsl(359, 7%, 47%) !important;
+}
+.addUser_table td a:focus,
+.addUser_table td a:hover {
+    color: hsl(359, 7%, 61%) !important;
+    text-decoration: none;
+}
+.addUser_table .options_position .btn-primary {
+    background-color: hsl(38, 33%, 83%);
+    border: none;
+}
+.addUser_table .options_position {
+    text-align: right;
+}
+.addUser_table thead .options_position {
+    padding-right: 30px !important;
+}
+.category {
+    float: left;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    margin: 30px 0 20px 0;
+    font-size: 30px;
+    color: hsl(358, 29%, 45%);
+    font-weight: 500;
+}
+.justify-content-center {
+    float: left;
+    width: 100%;
+}
+.options_user .btn-primary {
+    background-color: hsl(357, 33%, 83%) !important;
+    border: none;
+}
+.options_user {
+    text-align: right;
+}
+.options_user {
+    padding-right: 30px !important;
+}
+table {
+    width: 97% !important;
+    margin: 0 auto;
+}
+form {
+    width: 100%;
+}

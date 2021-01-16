@@ -66,13 +66,6 @@ h1 {
     border-radius: 20px;
     padding: 0px 11px;
 }
-#pos_holder .btn-primary {
-    background-color: hsl(38, 13%, 55%) !important;
-    border: none !important;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
-}
 .button_position {
     width: 200px;
     height: 99px;
@@ -151,6 +144,10 @@ h1 {
 .table_options td a:hover {
     color: hsl(46, 25%, 65%) !important;
     text-decoration: none;
+}
+table {
+    width: 97% !important;
+    margin: 0 auto;
 }
 .table_options .options_position .btn-primary {
     background-color: hsl(38, 33%, 83%);

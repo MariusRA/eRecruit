@@ -9,7 +9,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style><%@include file="/position.css"%></style>
-
+<style><%@include file="/general.css"%></style>
 <t:pageTemplate pageTitle="Add Position">
     <h1>Add Position</h1>
     <div id="pos_holder">
