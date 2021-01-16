@@ -80,7 +80,7 @@ public class UsersSettings extends HttpServlet {
         for (UserDetails ud : userDetails) {
             for (UserSettings us : userSettings) {
                 if (ud.getId().equals(us.getUserId())) {
-                    usd.setId(ud.getId());
+                    usd.setId(userBean.getIdByUsername(request.getRemoteUser()));
                     usd.setFirstName(ud.getFirstName());
                     usd.setLastName(ud.getLastName());
                     usd.setPhoneNumber(ud.getPhoneNumber());
@@ -95,7 +95,13 @@ public class UsersSettings extends HttpServlet {
             }
         }
         
-        request.setAttribute("usd",usd);
+        if(userSettingsBean.checkIdInDb(usd.getId())){
+            request.setAttribute("usd",usd);
+        }
+        else{
+            request.setAttribute("usd", null);
+        }
+        
         request.getRequestDispatcher("/WEB-INF/pages/userSettings.jsp").forward(request, response);
     }
 
@@ -111,6 +117,24 @@ public class UsersSettings extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        
+        String[] isTheButtonPressed=request.getParameterValues("settingsSave");
+        if(isTheButtonPressed!=null){
+            String relocationStatus[]=request.getParameterValues("relocation");
+            String address=request.getParameter("relocation");
+            String cvLink=request.getParameter("cv");
+            String interviewDate="No interview set yet";
+            String comms="Nobody has commented yet";
+            
+            String usn= request.getRemoteUser();
+            Integer idusn=userBean.getIdByUsername(usn);
+            UserDetails currentUser=userBean.findById(idusn);
+            
+            userSettingsBean.createUserSettings(address,relocationStatus[0],cvLink,interviewDate,comms,idusn);
+            
+        }
+        
+        response.sendRedirect(request.getContextPath()+"/UsersSettings");
     }
 
     /**
