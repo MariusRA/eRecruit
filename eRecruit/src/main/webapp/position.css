@@ -1,0 +1,164 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 16, 2021, 4:39:17 AM
+    Author     : Denisa
+*/
+
+#pos_holder {
+    width: 100%;
+}
+#pos_holder form {
+    width: 700px;
+    margin: 0 auto;
+}
+.closed_btn {
+    color: #000000;
+}
+h1 {
+    margin-top: 15px !important;
+    color: hsl(38, 13%, 28%);
+    margin-left: 15px !important;
+}
+#pos_holder .field {
+    float: left;
+    width: 700px;
+    margin-bottom: 18px;
+    position: relative;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+}
+#pos_holder .field label {
+    font-size: 14px;
+    float: left;
+    width: 100%;
+    color: hsl(38, 28%, 52%);
+    font-weight: 500;
+    line-height: 18px;
+    height: 18px;
+    margin-bottom: 8px;
+}
+#pos_holder .field textarea {
+    width: 420px;
+    border: 1px solid #c4c4c4;
+    font-size: 14px !important;
+    float: left;
+    padding: 0px;
+    height: 34px;
+    line-height: 34px;
+    padding: 0 10px;
+    background-color: #fff
+}
+#pos_holder .form-select {
+    height: 46px;
+    width: 148px;
+    border: none;
+    margin-bottom: 15px;
+    background-color: hsl(38, 28%, 77%);
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    padding: 0px 11px;
+}
+#pos_holder .btn-primary {
+    background-color: hsl(38, 13%, 55%) !important;
+    border: none !important;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+.button_position {
+    width: 200px;
+    height: 99px;
+    background-color: hsl(38, 16%, 93%) !important;
+    border-color: hsl(38, 16%, 93%) !important;
+    position: relative;
+    background-color: transparent;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+.closed_btn:disabled {
+    color: red !important;
+    font-weight: 500;
+}
+.button_position .button_pos {
+    float: left;
+    width: 100%;
+    height: 100%;
+    /* margin: auto 0; */
+    font-size: 15px;
+    color: #4D3B2C;
+    font-weight: 500;
+}
+.holder_btn {
+    width: 100%;
+    margin: 0 auto;
+    float: left;
+    text-align: center;
+}
+.button_position .button_pos .icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+    display: block;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background: url('${pageContext.request.contextPath}/carousel/white_icon.svg') no-repeat center center hsla(30, 80%, 45%, 27%);
+    background-size: 14px auto;
+}
+#position_page .category {
+    float: left;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    margin: 30px 0 20px 0;
+    font-size: 30px;
+    color: #926D51;
+    font-weight: 500;
+}
+.button_position .button_pos .text {
+    position: relative;
+    font-size: 20px;
+    top: -52px;
+    
+}
+.table_options th {
+    background-color: hsl(38, 33%, 99%) !important;
+}
+.table_options td,
+.table_options th {
+    padding: 13px 6px !important;
+    vertical-align: inherit !important;
+}
+.table_options td {
+    background-color: hsl(38, 33%, 83%) !important;
+    padding: 0px 12px !important;
+}
+.table_options td a,
+.table_options td a:visited,
+.table_options td a:active{
+    color: hsl(56, 7%, 47%) !important;
+}
+.table_options td a:focus,
+.table_options td a:hover {
+    color: hsl(46, 25%, 65%) !important;
+    text-decoration: none;
+}
+.table_options .options_position .btn-primary {
+    background-color: hsl(38, 33%, 83%);
+    border: none;
+}
+.table_options .options_position {
+    text-align: right;
+}
+.table_options thead .options_position {
+    padding-right: 30px !important;
+}
