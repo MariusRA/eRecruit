@@ -22,7 +22,9 @@
                 <tbody>
                     <c:forEach var="user" items="${users_applicants}" varStatus="Status">
                         <tr>
-                            <td>${user.username}</td>
+                            <td>
+                                <a href="${pageContext.request.contextPath}/UsersSettings?usd=${usd}"> ${user.username}</a>
+                            </td>
                             <td>${user.email}</td>     
                             <td class="options_applicants">            
                                 
