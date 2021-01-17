@@ -5,8 +5,14 @@
  */
 package com.rec.erecruit.servlet;
 
+import com.rec.erecruit.common.UserDetails;
+import com.rec.erecruit.common.UserSettingsDetails;
+import com.rec.erecruit.ejb.UserBean;
+import com.rec.erecruit.ejb.UserSettingsBean;
+import com.rec.erecruit.entity.UserSettings;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +26,12 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "Interview", urlPatterns = {"/Interview"})
 public class Interview extends HttpServlet {
 
+    
+    @Inject
+    private UserSettingsBean userSettingsBean;
+    
+    @Inject
+    private UserBean userBean;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -58,6 +70,24 @@ public class Interview extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String id= request.getParameter("userToBeEdited");
+        UserSettings us=userSettingsBean.findById(Integer.parseInt(id));
+        UserDetails ud=userBean.findById(Integer.parseInt(id));
+        UserSettingsDetails usd= new UserSettingsDetails();
+                    usd.setId(Integer.parseInt(id));
+                    usd.setFirstName(ud.getFirstName());
+                    usd.setLastName(ud.getLastName());
+                    usd.setPhoneNumber(ud.getPhoneNumber());
+                    usd.setEmail(ud.getEmail());
+                    usd.setAddress(us.getAddress());
+                    usd.setRelocation(us.getRelocation());
+                    usd.setLinkCV(us.getLinkCV());
+                    usd.setInterviewDate(us.getInterviewDate());
+                    usd.setComments(us.getComments());
+                    usd.setUserId(us.getUserId());
+                    
+        request.setAttribute("usd", usd);
         request.getRequestDispatcher("/WEB-INF/pages/setInterviewDate.jsp").forward(request, response);
 
     }
@@ -73,7 +103,14 @@ public class Interview extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       
+            String[] button= request.getParameterValues("interviewSubmit");
+            String id=request.getParameter("userToBeEdited");
+            String date=request.getParameter("interview");
+            
+            if(button!=null){
+                
+            }
     }
 
     /**
