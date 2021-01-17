@@ -52,7 +52,5 @@
         <group-name>DIRECTOR_HR</group-name>
         <group-name>RECRUITER</group-name>
         <group-name>VIEWER</group-name>    
-    </security-role-mapping>
-    
-    
+    </security-role-mapping>   
 </glassfish-web-app>

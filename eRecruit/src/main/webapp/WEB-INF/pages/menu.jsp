@@ -30,9 +30,11 @@
                     <a class="nav-link" href="${pageContext.request.contextPath}/Positions">Positions</a>
                 </li>  
             </c:if>
-            <li class="nav-item ${activePage eq "UserSettings" ? ' active' : ''}">
-                <a class="nav-link" href="${pageContext.request.contextPath}/UsersSettings">Settings</a>
-            </li>        
+            <c:if test="${pageContext.request.isUserInRole('ViewerRole')}">
+                <li class="nav-item ${activePage eq "UserSettings" ? ' active' : ''}">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/UsersSettings">Settings</a>
+                </li> 
+            </c:if>
         </ul>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
