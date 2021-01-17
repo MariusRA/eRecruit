@@ -15,7 +15,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto others">
             <li class="nav-item active">
                 <a class="nav-link" href="${pageContext.request.contextPath}/about.jsp">About us</a>
             </li>
@@ -36,7 +36,7 @@
                 </li> 
             </c:if>
         </ul>
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto login">
             <li class="nav-item">
                 <c:choose>
                     <c:when test="${pageContext.request.getRemoteUser() == null}">

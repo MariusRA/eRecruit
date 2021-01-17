@@ -47,6 +47,10 @@ body {
     margin-bottom: 12px;
     word-break: break-word;
 }
+.view_table {
+    width: 47% !important;
+    margin-top: 40px;
+}
 .user_info span b {
     color: hsl(61, 39%, 62%); 
 }

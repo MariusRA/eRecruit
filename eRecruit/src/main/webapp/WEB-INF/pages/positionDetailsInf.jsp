@@ -49,7 +49,7 @@
                     </tr>
                 </table>
             </c:if>
-            <table class="table table-hover table-dark">
+            <table class="table table-hover table-dark view_table">
                 <tr>
                     <th> Comment </th>
                     <th> Made by </th>

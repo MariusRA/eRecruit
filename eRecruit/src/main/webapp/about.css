@@ -1,0 +1,48 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 17, 2021, 11:53:26 PM
+    Author     : Denisa
+*/
+
+body {
+   
+    background: url("${pageContext.request.contextPath}/carousel/brick-wall-dark.png");
+}
+.holder #about_holder {
+    padding: 40px;
+    width: 830px;
+    margin: 0 auto;
+    background-color: hsl(38, 100%, 79%);
+    -webkit-box-shadow: 5px 7px 31px 0px rgba(0,0,0,0.83);
+    -moz-box-shadow: 5px 7px 31px 0px rgba(0,0,0,0.83);
+    box-shadow: 5px 7px 31px 0px rgba(0,0,0,0.83);
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    margin-bottom: 60px;
+}
+.holder #about_title {
+    height: 40px;
+    font-size: 30px;
+    text-align: center;
+    margin: 20px 0;
+    font-weight: 500;
+    color: hsl(211, 13%, 19%);
+}
+.holder {
+    width: 100%;
+}
+.holder #about_holder span {
+    font-size: 20px;
+    font-weight: 500;
+    color: hsl(211, 13%, 56%);
+}
+.holder #about_holder p,
+.holder #about_holder ol,
+.holder #about_holder ul {
+    font-weight: 300;
+}

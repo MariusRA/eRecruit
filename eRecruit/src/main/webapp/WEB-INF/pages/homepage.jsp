@@ -4,7 +4,7 @@
     Author     : Denisa
 --%>
 <style><%@include file="/general.css"%></style>
-<t:pageTemplate pageTitle="Login">
+<t:pageTemplate pageTitle="Homepage">
     <div class="title-holder"> 
         <span>e-Recruit</span>
     </div>
