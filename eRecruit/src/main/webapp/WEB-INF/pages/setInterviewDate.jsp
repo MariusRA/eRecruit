@@ -22,7 +22,7 @@
                     The interview date is required.
                 </div>
             </div>
-            <input type="hidden" name="userToBeEdited" value="${usd.}">
+            <input type="hidden" name="userToBeEdited" value="${usd.userId}">
             
 
             <button class="btn btn-primary btn-lg btn-block" name="interviewSubmit" type="submit">Save</button>
