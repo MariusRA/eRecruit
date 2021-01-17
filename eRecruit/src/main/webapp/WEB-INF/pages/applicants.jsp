@@ -26,8 +26,9 @@
                             <td>${user.email}</td>     
                             <td class="options_applicants">            
                                 
-
+                                <a class="btn btn-primary" href="${usd.linkCV}"  name="viewCv" value="">View CV</button>    
                                 <a class="btn btn-primary" href="${pageContext.request.contextPath}/Candidates?applicantAccepted=${user.id}"role="button">✓</a>
+                                
                                 <button class="btn btn-primary" name="remove" value="${user.id}" type="submit">X</button>
                                 <input type="hidden" id="idPos" name="idPos" placeholder="${posIdForApplicants}" value="${posIdForApplicants}">
                                 <input type="hidden" id="id2" name="id2" placeholder="${id2}" value="${id2}">
