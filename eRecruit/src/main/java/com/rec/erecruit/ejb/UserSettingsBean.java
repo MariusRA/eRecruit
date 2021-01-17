@@ -74,5 +74,13 @@ public class UserSettingsBean {
         
         
     }
+    
+    public UserSettings findById(Integer userId) {
+        LOG.info("findUserById");
+        String query="SELECT u FROM UserSettings u WHERE u.userId= "+userId;
+        TypedQuery<UserSettings> typedQuery=em.createQuery(query,UserSettings.class);  
+        List<UserSettings> users = (List<UserSettings>) typedQuery.getResultList();
+        return users.get(0);
+    }
 
 }
