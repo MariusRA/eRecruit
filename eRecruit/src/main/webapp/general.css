@@ -48,16 +48,3 @@ body {
     -moz-border-radius: 20px;
     border-radius: 20px;
 }
-.login {
-    width: 50%;
-    text-align: right;
-    /* float: right; */
-    float: left
-}
-.login li {
-    width: 100%;
-}
-.others {
-    width: 50%;
-    float: left;
-}
