@@ -25,12 +25,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "EditUserSettings", urlPatterns = {"/EditUserSettings"})
 public class EditUserSettings extends HttpServlet {
-        
-        @Inject
-        UserSettingsBean userSettingsBean;
-        
-        @Inject
-        UserBean userBean;
+
+    @Inject
+    UserSettingsBean userSettingsBean;
+
+    @Inject
+    UserBean userBean;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -48,15 +49,14 @@ public class EditUserSettings extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EditUserSettings</title>");            
+            out.println("<title>Servlet EditUserSettings</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet EditUserSettings at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
-    } 
-    
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -70,20 +70,30 @@ public class EditUserSettings extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-       
-        
-       // List<UserSettings> comm = userSettingsBean.getAllUserSettings();
-        //request.setAttribute("comm", comm);
 
+        // List<UserSettings> comm = userSettingsBean.getAllUserSettings();
+        //request.setAttribute("comm", comm);
         int commId = Integer.parseInt(request.getParameter("id"));
         UserSettings com = userSettingsBean.findById(commId);
-        UserDetails ud=userBean.findById(userBean.getIdByUsername(request.getRemoteUser()));
-        UserSettingsDetails usd=new UserSettingsDetails(ud.getId(), ud.getFirstName(),ud.getLastName(),ud.getPhoneNumber(),ud.getEmail(),com.getAddress(),com.getRelocation(),com.getLinkCV(),com.getInterviewDate(),com.getComments(),com.getUserId());
+        UserDetails ud = userBean.findById(userBean.getIdByUsername(request.getRemoteUser()));
+        UserSettingsDetails usd = new UserSettingsDetails();
+        
+        
+        usd.setId(userBean.getIdByUsername(request.getRemoteUser()));
+        usd.setFirstName(ud.getFirstName());
+        usd.setLastName(ud.getLastName());
+        usd.setPhoneNumber(ud.getPhoneNumber());
+        usd.setEmail(ud.getEmail());
+        usd.setAddress(com.getAddress());
+        usd.setRelocation(com.getRelocation());
+        usd.setLinkCV(com.getLinkCV());
+        usd.setInterviewDate(com.getInterviewDate());
+        usd.setComments(com.getComments());
+        usd.setUserId(com.getUserId());
+        
         request.setAttribute("com", usd);
         request.getRequestDispatcher("/WEB-INF/pages/editUserSettings.jsp").forward(request, response);
     }
-    
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -99,7 +109,6 @@ public class EditUserSettings extends HttpServlet {
         processRequest(request, response);
     }
 
-    
     @Override
     public String getServletInfo() {
         return "Short description";

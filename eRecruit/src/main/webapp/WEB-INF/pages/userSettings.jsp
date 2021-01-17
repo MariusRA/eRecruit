@@ -26,7 +26,7 @@
                     <div><a>Link CV:</a> <a>${usd.linkCV}</a></div>
                     <div><a>Interview Date:</a> <a>${usd.interviewDate}</a></div>
                     <div><a>Comments:</a> <a>${usd.comments}</a></div>
-                    <div><a class="btn btn-primary" href="${pageContext.request.contextPath}/EditUserSettings?id=${usd.id}" role="button">Edit</a></div>
+                    <div><a class="btn btn-primary" href="${pageContext.request.contextPath}/EditUserSettings?id=${usd.userId}" role="button">Edit</a></div>
                 </c:when>
                 <c:otherwise>                             
 

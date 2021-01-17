@@ -32,6 +32,7 @@
                                 <input type="hidden" id="idPos" name="idPos" placeholder="${posIdForApplicants}" value="${posIdForApplicants}">
                                 <input type="hidden" id="id2" name="id2" placeholder="${id2}" value="${id2}">
 
+                                 
                             </td>
                         </tr>
                     </c:forEach>
