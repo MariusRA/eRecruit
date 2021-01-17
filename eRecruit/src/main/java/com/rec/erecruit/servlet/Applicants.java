@@ -80,21 +80,23 @@ public class Applicants extends HttpServlet {
 
         Integer pId = Integer.parseInt(request.getParameter("posIdForApplicants"));
         List<UserDetails> users_applicants = applicantBean.applicantsToUsers(applicantBean.getAllApplicants(pId));
-        request.setAttribute("users_applicants", users_applicants);
+        
 
         request.setAttribute("posIdForApplicants", pId);
-        request.setAttribute("users_applicants", users_applicants);
+        
+        
         
         //----------------------------------------------------------------------------------------------------------------------------------------
         
-        List<UserDetails> userDetails = userBean.getAllUsers();
+        List<UserDetails> userDetails = users_applicants;
         List<UserSettings> userSettings = userSettingsBean.getAllUserSettings();
         List<UserSettingsDetails> userDetailsSettings = new ArrayList<>();
-        UserSettingsDetails usd = new UserSettingsDetails();
+       
         for (UserDetails ud : userDetails) {
             for (UserSettings us : userSettings) {
                 if (ud.getId().equals(us.getUserId())) {
-                    usd.setId(userBean.getIdByUsername(request.getRemoteUser()));
+                    UserSettingsDetails usd = new UserSettingsDetails();
+                    usd.setId(ud.getId());
                     usd.setFirstName(ud.getFirstName());
                     usd.setLastName(ud.getLastName());
                     usd.setPhoneNumber(ud.getPhoneNumber());
@@ -105,18 +107,13 @@ public class Applicants extends HttpServlet {
                     usd.setInterviewDate(us.getInterviewDate());
                     usd.setComments(us.getComments());
                     usd.setUserId(us.getUserId());
+                    userDetailsSettings.add(usd);
                 }
             }
         }
         
-        if(userSettingsBean.checkIdInDb(usd.getId())){
-            request.setAttribute("usd",usd);
-        }
-        else{
-            request.setAttribute("usd", null);
-        }
         
-       
+       request.setAttribute("users_applicants", userDetailsSettings);
 
 
         request.getRequestDispatcher("/WEB-INF/pages/applicants.jsp").forward(request, response);

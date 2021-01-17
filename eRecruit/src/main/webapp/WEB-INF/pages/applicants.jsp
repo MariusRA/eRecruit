@@ -23,17 +23,17 @@
                     <c:forEach var="user" items="${users_applicants}" varStatus="Status">
                         <tr>
                             <td>
-                                <a href="${pageContext.request.contextPath}/UsersSettings?usd=${usd}"> ${user.username}</a>
+                                <a href="${pageContext.request.contextPath}/UsersSettings?usd=${user}"> ${user.firstName}</a>
                             </td>
                             <td>${user.email}</td>     
                             <td class="options_applicants">            
                                 
-                                <a class="btn btn-primary" href="${usd.linkCV}"  name="viewCv" value="">View CV</button>    
+                                <a class="btn btn-primary" href="${user.linkCV}"  name="viewCv" value="">View CV</button>    
                                 <a class="btn btn-primary" href="${pageContext.request.contextPath}/Interview?applicantAccepted=${user.id}"role="button">✓</a>
                                 
-                                <button class="btn btn-primary" name="remove" value="${user.id}" type="submit">X</button>
+                                <button class="btn btn-primary" name="remove" value="${user.userId}" type="submit">X</button>
                                 <input type="hidden" id="idPos" name="idPos" placeholder="${posIdForApplicants}" value="${posIdForApplicants}">
-                                <input type="hidden" id="id2" name="id2" placeholder="${id2}" value="${id2}">
+                                <input type="hidden" id="id2" name="id2" placeholder="${user.id}" value="${user.id}">
 
                                  
                             </td>

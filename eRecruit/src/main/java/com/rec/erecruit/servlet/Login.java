@@ -62,9 +62,7 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         request.setAttribute("activePage", "Login");
         
-        HttpSession session=request.getSession(true); 
-        //String username=request.getRemoteUser();
-        session.setAttribute("uname","sandra");  
+        
         request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
         //response.sendRedirect(request.getContextPath());
     }

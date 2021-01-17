@@ -71,7 +71,7 @@ public class Interview extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String id= request.getParameter("userToBeEdited");
+        String id= request.getParameter("applicantAccepted");
         UserSettings us=userSettingsBean.findById(Integer.parseInt(id));
         UserDetails ud=userBean.findById(Integer.parseInt(id));
         UserSettingsDetails usd= new UserSettingsDetails();
@@ -107,10 +107,14 @@ public class Interview extends HttpServlet {
             String[] button= request.getParameterValues("interviewSubmit");
             String id=request.getParameter("userToBeEdited");
             String date=request.getParameter("interview");
+            UserSettings us=userSettingsBean.findById(Integer.parseInt(id));
             
             if(button!=null){
-                
+                userSettingsBean.setInterviewDate(us, date);
             }
+            
+            
+            response.sendRedirect(request.getContextPath());
     }
 
     /**
