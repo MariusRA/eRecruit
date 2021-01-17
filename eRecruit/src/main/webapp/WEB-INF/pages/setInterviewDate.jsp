@@ -13,7 +13,7 @@
 <t:pageTemplate pageTitle="Set Interview">
     
     <div id="pos_holder">
-        <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/AddUser">
+        <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/Interview">
             
             <div class="field">
                 <label for="interview">Set an interview date</label>
@@ -22,9 +22,10 @@
                     The interview date is required.
                 </div>
             </div>
+            <input type="hidden" name="userToBeEdited" value="${usd.}">
             
 
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Save</button>
+            <button class="btn btn-primary btn-lg btn-block" name="interviewSubmit" type="submit">Save</button>
         </form>
     </div>
     

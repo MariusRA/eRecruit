@@ -82,5 +82,12 @@ public class UserSettingsBean {
         List<UserSettings> users = (List<UserSettings>) typedQuery.getResultList();
         return users.get(0);
     }
+    
+    public void setInterviewDate(UserSettings us,String date){
+        LOG.info("setInterviewDate");
+        String query="UPDATE UserSettings u SET u.interviewDate= "+date+" WHERE u.userId= "+us.getId();
+        TypedQuery<UserSettings> typedQuery=em.createQuery(query,UserSettings.class);  
+        typedQuery.executeUpdate();
+    }
 
 }
