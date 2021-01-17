@@ -85,7 +85,7 @@ public class UserSettingsBean {
     
     public void setInterviewDate(UserSettings us,String date){
         LOG.info("setInterviewDate");
-        String query="UPDATE UserSettings u SET u.interviewDate= "+date+" WHERE u.userId= "+us.getId();
+        String query="UPDATE UserSettings u SET u.interviewDate= '"+date+"' WHERE u.userId= "+us.getUserId();
         TypedQuery<UserSettings> typedQuery=em.createQuery(query,UserSettings.class);  
         typedQuery.executeUpdate();
     }

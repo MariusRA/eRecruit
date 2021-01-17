@@ -90,8 +90,10 @@ public class UsersSettings extends HttpServlet {
         UserSettingsDetails usd = new UserSettingsDetails();
         for (UserDetails ud : userDetails) {
             for (UserSettings us : userSettings) {
-                if (ud.getId().equals(us.getUserId())) {
-                    usd.setId(userBean.getIdByUsername(request.getRemoteUser()));
+                Integer user=userBean.getIdByUsername(request.getRemoteUser());
+                
+                if ((ud.getId().equals(us.getUserId())) && user.equals(ud.getId())) {
+                    usd.setId(user);
                     usd.setFirstName(ud.getFirstName());
                     usd.setLastName(ud.getLastName());
                     usd.setPhoneNumber(ud.getPhoneNumber());
