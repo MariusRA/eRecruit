@@ -1,0 +1,44 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 17, 2021, 10:51:10 AM
+    Author     : Denisa
+*/
+
+body {
+    background-color: hsl(239, 34%, 89%) !important;
+}
+#pos_holder .form-select,
+#pos_holder .btn-primary{
+    background-color: hsl(239, 33%, 64%) !important;
+    width: 180px;
+    border: none;
+}
+#pos_holder .field label {
+    color: hsl(239, 33%, 44%);
+}
+.results_holder {
+    background-color: #454d55;
+    /* margin: 20px; */
+    padding: 25px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    -webkit-box-shadow: -27px 31px 15px -1px rgba(0,0,0,0.49);
+    -moz-box-shadow: -27px 31px 15px -1px rgba(0,0,0,0.49);
+    box-shadow: -27px 31px 15px -1px rgba(0,0,0,0.49);
+}
+#pos_holder form {
+    color: #ffffff !important;
+}
+.results_holder div {
+    margin-bottom: 5px;
+    font-size: 15px;
+}
+#pos_holder .form-select,
+#pos_holder .btn-primary {
+    margin-top: 15px;
+}
