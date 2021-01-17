@@ -29,14 +29,15 @@
             </c:if>
             <c:if test="${pageContext.request.isUserInRole('ViewerRole')}">
                 <span class="category">YOU APPLIED FOR</span>
-                <table class="table">
+                <table class="table table_options">
                     <thead class="thead-light">
                         <tr>
                             <th scope="col">Name</th>
                             <th scope="col">Department</th>
                             <th scope="col">Project</th> 
                             <th scope="col">Status</th> 
-                            <th scope="col">Apply</th>
+                            
+                            <th scope="col" class="right">Apply</th>     
                         </tr>
                     </thead>
                     <tbody>               
@@ -46,18 +47,19 @@
                                 <td>${position.department}</td>
                                 <td>${position.project}</td>
                                 <td>${position.status ? "Open" : "Closed"}</td>
-                                 <td class="options_position">
+                                <td class="options_position">
                                     <c:choose>
                                         <c:when test="${position.status==true}"> 
                                             <c:if test="${pageContext.request.isUserInRole('ViewerRole')}">
-                                                <td><button class="btn btn-primary" name="unapply" value="${position.id}"type="submit">Unapply</button></td>
+                                            
+                                                <button class="btn btn-primary" name="unapply" value="${position.id}"type="submit">Unapply</button>
                                             </c:if>
                                         </c:when>
                                         <c:otherwise>                             
-                                            <td><button class="btn btn-primary" type="button" disabled>CLOSED</button></td>                                                   
+                                            <button class="btn btn-primary" type="button" disabled>CLOSED</button>                                                   
                                         </c:otherwise>    
                                     </c:choose>  
-                                 </td>
+                                </td>
                             </tr>
                         </c:forEach>
                     </tbody>
@@ -77,7 +79,7 @@
                             <th scope="col" class="options_position">Options</th>
                             </c:if> 
                             <c:if test="${pageContext.request.isUserInRole('ViewerRole')}">
-                            <th scope="col">Apply</th>
+                            <th scope="col" class="right">Apply</th>
                             </c:if>
                     </tr>
                 </thead>
@@ -118,3 +120,8 @@
         </form>
 
 </t:pageTemplate>
+<style>
+    .right {
+        text-align: right;
+    }
+</style>
