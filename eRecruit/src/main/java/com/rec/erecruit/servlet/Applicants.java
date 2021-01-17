@@ -6,10 +6,14 @@
 package com.rec.erecruit.servlet;
 
 import com.rec.erecruit.common.UserDetails;
+import com.rec.erecruit.common.UserSettingsDetails;
 import com.rec.erecruit.ejb.ApplicantBean;
 import com.rec.erecruit.ejb.UserBean;
+import com.rec.erecruit.ejb.UserSettingsBean;
+import com.rec.erecruit.entity.UserSettings;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -29,6 +33,9 @@ public class Applicants extends HttpServlet {
     private ApplicantBean applicantBean;
     
     @Inject UserBean userBean;
+    
+    @Inject
+    private UserSettingsBean userSettingsBean;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -75,11 +82,39 @@ public class Applicants extends HttpServlet {
         List<UserDetails> users_applicants = applicantBean.applicantsToUsers(applicantBean.getAllApplicants(pId));
         request.setAttribute("users_applicants", users_applicants);
 
-        
-
-      
         request.setAttribute("posIdForApplicants", pId);
         request.setAttribute("users_applicants", users_applicants);
+        
+        //----------------------------------------------------------------------------------------------------------------------------------------
+        
+        List<UserDetails> userDetails = userBean.getAllUsers();
+        List<UserSettings> userSettings = userSettingsBean.getAllUserSettings();
+        List<UserSettingsDetails> userDetailsSettings = new ArrayList<>();
+        UserSettingsDetails usd = new UserSettingsDetails();
+        for (UserDetails ud : userDetails) {
+            for (UserSettings us : userSettings) {
+                if (ud.getId().equals(us.getUserId())) {
+                    usd.setId(userBean.getIdByUsername(request.getRemoteUser()));
+                    usd.setFirstName(ud.getFirstName());
+                    usd.setLastName(ud.getLastName());
+                    usd.setPhoneNumber(ud.getPhoneNumber());
+                    usd.setEmail(ud.getEmail());
+                    usd.setAddress(us.getAddress());
+                    usd.setRelocation(us.getRelocation());
+                    usd.setLinkCV(us.getLinkCV());
+                    usd.setInterviewDate(us.getInterviewDate());
+                    usd.setComments(us.getComments());
+                    usd.setUserId(us.getUserId());
+                }
+            }
+        }
+        
+        if(userSettingsBean.checkIdInDb(usd.getId())){
+            request.setAttribute("usd",usd);
+        }
+        else{
+            request.setAttribute("usd", null);
+        }
         
        
 
