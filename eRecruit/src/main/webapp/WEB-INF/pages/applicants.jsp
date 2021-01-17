@@ -29,7 +29,7 @@
                             <td class="options_applicants">            
                                 
                                 <a class="btn btn-primary" href="${usd.linkCV}"  name="viewCv" value="">View CV</button>    
-                                <a class="btn btn-primary" href="${pageContext.request.contextPath}/Candidates?applicantAccepted=${user.id}"role="button">✓</a>
+                                <a class="btn btn-primary" href="${pageContext.request.contextPath}/Interview?applicantAccepted=${user.id}"role="button">✓</a>
                                 
                                 <button class="btn btn-primary" name="remove" value="${user.id}" type="submit">X</button>
                                 <input type="hidden" id="idPos" name="idPos" placeholder="${posIdForApplicants}" value="${posIdForApplicants}">
