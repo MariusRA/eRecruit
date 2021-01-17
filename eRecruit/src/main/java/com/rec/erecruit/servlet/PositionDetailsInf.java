@@ -32,7 +32,7 @@ import javax.servlet.http.HttpServletResponse;
     "CandidateCRUDRole", "CommentsCRUDRole", "ViewerRole", "PositionRole"})
 @ServletSecurity(
         value = @HttpConstraint(
-                rolesAllowed = {"PositionCRUDRole"}
+                rolesAllowed = {"PositionCRUDRole","ViewerRole"}
         )
 )
 @WebServlet(name = "PositionDetailsInf", urlPatterns = {"/PositionDetailsInf"})

@@ -18,8 +18,7 @@
                     <div class="results_holder">
                         <div><a>First Name:</a> <a>${usd.firstName}</a></div>
                         <div><a>Last Name:</a> <a>${usd.lastName}</a></div>
-                        <div><a>Phone Number:</a> <a>${usd.phoneNumber}</a></div>
-                        <div><a>Mobile Phone Number:</a> <a>${usd.mobilePhoneNumber}</a></div>
+                        <div><a>Phone Number:</a> <a>${usd.phoneNumber}</a></div>                      
                         <div><a>Email:</a> <a>${usd.email}</a></div>
                         <div><a>Address:</a> <a>${usd.address}</a></div>
                         <div><a>Relocation:</a> <a>${usd.relocation}</a></div>

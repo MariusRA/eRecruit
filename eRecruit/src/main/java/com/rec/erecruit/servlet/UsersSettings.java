@@ -14,8 +14,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.security.DeclareRoles;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.HttpConstraint;
+import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +28,14 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author mariu
  */
+@DeclareRoles({"UserCRUDRole", "PositionCRUDRole", "PositionDeleteRole",
+    "CandidateCRUDRole", "CommentsCRUDRole", "ViewerRole", "PositionRole"})
+@ServletSecurity(
+        value = @HttpConstraint(
+                rolesAllowed = {"PositionCRUDRole","ViewerRole"}
+        )
+)
+
 @WebServlet(name = "UsersSettings", urlPatterns = {"/UsersSettings"})
 public class UsersSettings extends HttpServlet {
 
@@ -94,14 +105,13 @@ public class UsersSettings extends HttpServlet {
                 }
             }
         }
-        
-        if(userSettingsBean.checkIdInDb(usd.getId())){
-            request.setAttribute("usd",usd);
-        }
-        else{
+
+        if (userSettingsBean.checkIdInDb(usd.getId())) {
+            request.setAttribute("usd", usd);
+        } else {
             request.setAttribute("usd", null);
         }
-        
+
         request.getRequestDispatcher("/WEB-INF/pages/userSettings.jsp").forward(request, response);
     }
 
@@ -117,24 +127,23 @@ public class UsersSettings extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        
-        String[] isTheButtonPressed=request.getParameterValues("settingsSave");
-        if(isTheButtonPressed!=null){
-            String relocationStatus[]=request.getParameterValues("relocation");
-            String address=request.getParameter("relocation");
-            String cvLink=request.getParameter("cv");
-            String interviewDate="No interview set yet";
-            String comms="Nobody has commented yet";
-            
-            String usn= request.getRemoteUser();
-            Integer idusn=userBean.getIdByUsername(usn);
-            UserDetails currentUser=userBean.findById(idusn);
-            
-            userSettingsBean.createUserSettings(address,relocationStatus[0],cvLink,interviewDate,comms,idusn);
-            
+        String[] isTheButtonPressed = request.getParameterValues("settingsSave");
+        if (isTheButtonPressed != null) {
+            String relocationStatus = request.getParameter("relocation");
+            String address = request.getParameter("address");
+            String cvLink = request.getParameter("cv");
+            String interviewDate = "No interview set yet";
+            String comms = "Nobody has commented yet";
+
+            String usn = request.getRemoteUser();
+            Integer idusn = userBean.getIdByUsername(usn);
+            UserDetails currentUser = userBean.findById(idusn);
+
+            userSettingsBean.createUserSettings(address, relocationStatus, cvLink, interviewDate, comms, idusn);
+
         }
-        
-        response.sendRedirect(request.getContextPath()+"/UsersSettings");
+
+        response.sendRedirect(request.getContextPath() + "/UsersSettings");
     }
 
     /**

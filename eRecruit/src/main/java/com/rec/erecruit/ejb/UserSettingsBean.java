@@ -59,10 +59,10 @@ public class UserSettingsBean {
         UserSettings us=new UserSettings();
         us.setAddress(address);
         if(Relocation=="1"){
-            us.setRelocation(true);
+            us.setRelocation(Boolean.TRUE);
         }
         else if(Relocation=="0"){
-            us.setRelocation(false);
+            us.setRelocation(Boolean.FALSE);
         }
         
         us.setLinkCV(linkCV);
